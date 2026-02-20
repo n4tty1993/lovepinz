@@ -14,6 +14,8 @@ export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
+  // Note: hooks must run unconditionally per React rules; bgY is only
+  // applied in the style prop when shouldReduceMotion is false.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -106,8 +108,8 @@ export function HeroSection() {
         <motion.div
           className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40"
           initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: EASE_EXPO_OUT, delay: 0.5 }}
+          animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+          transition={shouldReduceMotion ? undefined : { duration: 0.8, ease: EASE_EXPO_OUT, delay: 0.5 }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[#FFF0E8] via-[#FFE4CC] to-[#FFDAB0] flex items-center justify-center">
             <div className="text-center">
