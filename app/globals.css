@@ -80,11 +80,14 @@
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --brand-gold: #C9A84C;
-  --brand-gold-hover: #B8913A;
-  --brand-dark: #0A0A0A;
-  --brand-dark-secondary: #111111;
-  --brand-light: #FAF9F7;
+  --brand-champagne: #F0C060;
+  --brand-champagne-hover: #D4972A;
+  --brand-white: #FFFFFF;
+  --brand-cream: #FFF9F4;
+  --brand-peach: #FFF0E8;
+  --brand-sage: #EDF5EA;
+  --brand-text: #2C1A0E;
+  --brand-muted: #7A6458;
 }
 
 .dark {
