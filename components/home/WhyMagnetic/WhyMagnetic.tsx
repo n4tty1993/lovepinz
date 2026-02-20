@@ -21,7 +21,7 @@ export function WhyMagnetic() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const headerY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const headerY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
     <section ref={sectionRef} className="bg-[#FFF9F4] py-24">

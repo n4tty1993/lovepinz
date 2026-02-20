@@ -14,22 +14,25 @@ export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // Note: hooks must run unconditionally per React rules; bgY is only
-  // applied in the style prop when shouldReduceMotion is false.
+  // Note: hooks must run unconditionally per React rules; values are only
+  // applied in style props when shouldReduceMotion is false.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  // Gradient drifts UP (negative) as you scroll — true parallax direction
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  // Image card drifts UP slower than text — creates depth between columns
+  const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
     <section
       ref={sectionRef}
       className="relative min-h-screen bg-white flex items-center overflow-hidden"
     >
-      {/* Parallax background gradient */}
+      {/* Parallax background gradient — extends beyond bounds so upward drift doesn't reveal gaps */}
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#FFF0E8_0%,_transparent_60%)] pointer-events-none"
+        className="absolute -top-20 -bottom-20 left-0 right-0 bg-[radial-gradient(ellipse_at_top_right,_#FFF0E8_0%,_transparent_60%)] pointer-events-none"
         style={shouldReduceMotion ? undefined : { y: bgY }}
       />
 
@@ -104,12 +107,13 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Product image — delayed entrance after text */}
+        {/* Product image — delayed entrance + scroll parallax (drifts up slower than text) */}
         <motion.div
           className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40"
           initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
           animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
           transition={shouldReduceMotion ? undefined : { duration: 0.8, ease: EASE_EXPO_OUT, delay: 0.5 }}
+          style={shouldReduceMotion ? undefined : { y: imgY }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[#FFF0E8] via-[#FFE4CC] to-[#FFDAB0] flex items-center justify-center">
             <div className="text-center">
