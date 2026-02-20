@@ -15,16 +15,14 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0A0A0A] border-b border-white/10 shadow-lg"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
+        scrolled ? "shadow-sm" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-white font-bold text-lg tracking-tight">
-            Magnetic<span className="text-[#C9A84C]">Pins</span>
+          <span className="text-[#2C1A0E] font-bold text-lg tracking-tight">
+            Magnetic<span className="text-[#F0C060]">Pins</span>
           </span>
         </Link>
 
@@ -33,7 +31,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-white/70 hover:text-white transition-colors"
+              className="text-sm text-[#7A6458] hover:text-[#2C1A0E] transition-colors"
             >
               {link.label}
             </Link>
@@ -42,7 +40,7 @@ export function Navbar() {
 
         <Link
           href="/design"
-          className="inline-flex items-center justify-center px-5 py-2 rounded-md text-sm font-semibold bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#B8913A] transition-colors"
+          className="inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-semibold bg-[#F0C060] text-[#2C1A0E] hover:bg-[#D4972A] transition-colors"
         >
           Start Designing
         </Link>
