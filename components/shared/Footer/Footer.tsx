@@ -3,12 +3,12 @@ import { NAV_LINKS, POLICY_LINKS } from "./Footer.constants";
 
 export function Footer() {
   return (
-    <footer className="bg-[#FFF9F4] border-t border-[#F0C060]/20">
+    <footer className="bg-[#FFF9F4] border-t border-[#2A7A6F]/20">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <p className="text-[#2C1A0E] font-bold text-xl mb-3">
-              Magnetic<span className="text-[#F0C060]">Pins</span>
+              Magnetic<span className="text-[#2A7A6F]">Pins</span>
             </p>
             <p className="text-[#7A6458] text-sm leading-relaxed max-w-xs">
               The easiest way to create custom magnetic pins — no holes, no fabric damage.
@@ -24,7 +24,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#7A6458] hover:text-[#D4972A] text-sm transition-colors"
+                    className="text-[#7A6458] hover:text-[#1F5C53] text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -42,7 +42,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#7A6458] hover:text-[#D4972A] text-sm transition-colors"
+                    className="text-[#7A6458] hover:text-[#1F5C53] text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#F0C060]/10 px-6 py-5">
+      <div className="border-t border-[#2A7A6F]/10 px-6 py-5">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-[#7A6458] text-xs">
             © {new Date().getFullYear()} MagneticPins. All rights reserved.
