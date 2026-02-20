@@ -6,7 +6,7 @@ export function PricingSection() {
     <section id="pricing" className="bg-[#FFF0E8] py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#D4972A] mb-3">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#1F5C53] mb-3">
             Transparent Pricing
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#2C1A0E] tracking-tight">
@@ -20,12 +20,12 @@ export function PricingSection() {
               key={tier.quantity}
               className={`relative rounded-2xl p-8 border bg-white transition-all hover:scale-[1.02] shadow-sm ${
                 tier.popular
-                  ? "ring-2 ring-[#F0C060] border-[#F0C060]/40 shadow-amber-100/80"
-                  : "border-[#F0C060]/20 hover:border-[#F0C060]/50 hover:shadow-md hover:shadow-amber-100/60"
+                  ? "ring-2 ring-[#2A7A6F] border-[#2A7A6F]/30 shadow-teal-100/60"
+                  : "border-[#2A7A6F]/20 hover:border-[#2A7A6F]/40 hover:shadow-md hover:shadow-teal-100/40"
               }`}
             >
               {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#F0C060] text-[#2C1A0E] text-xs font-bold shadow-sm">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#2A7A6F] text-white text-xs font-bold shadow-sm">
                   Most Popular
                 </div>
               )}
@@ -34,7 +34,7 @@ export function PricingSection() {
                 <span className="text-4xl font-bold text-[#2C1A0E]">{tier.unitPrice}</span>
                 <span className="text-[#7A6458] text-sm">/each</span>
               </div>
-              <p className="text-[#D4972A] text-sm font-medium">Total: {tier.total}</p>
+              <p className="text-[#2A7A6F] text-sm font-medium">Total: {tier.total}</p>
             </div>
           ))}
         </div>
@@ -45,7 +45,7 @@ export function PricingSection() {
           </p>
           <Link
             href="/design"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#F0C060] text-[#2C1A0E] hover:bg-[#D4972A] transition-all hover:scale-[1.02] shadow-lg shadow-amber-200/50"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
           >
             Calculate My Price
           </Link>
