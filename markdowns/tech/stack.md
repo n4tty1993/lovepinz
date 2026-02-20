@@ -9,9 +9,15 @@
 ## Styling
 
 - **Tailwind CSS v4** – Utility-first CSS framework
-- **tw-animate-css** – Animation utilities for Tailwind
+- **tw-animate-css** – Animation utilities for Tailwind (simple micro-interactions: `hover:scale-*`, `transition-colors`)
 - **class-variance-authority (CVA)** – Typed variant management for component styles
 - **clsx + tailwind-merge** – Conditional class merging without conflicts
+
+## Animations
+
+- **motion (v12)** – React animation library (formerly Framer Motion). Used for all complex animations: scroll-linked parallax (`useScroll` + `useTransform`), scroll-triggered reveals (`whileInView`), gesture interactions (`whileHover`, `whileTap`), orchestrated stagger sequences, and mount/unmount transitions (`AnimatePresence`).
+
+  **Hybrid strategy:** Motion handles rich, orchestrated effects. Tailwind utilities handle simple hover/color transitions. See `markdowns/tech/animations.md` for full guidelines.
 
 ## UI Components
 
