@@ -13,7 +13,11 @@ The project follows Next.js App Router conventions combined with a feature-orien
 │   └── globals.css       # Global styles and Tailwind CSS entry point
 │
 ├── components/           # Shared React components
-│   └── ui/               # shadcn/ui primitives (button, input, card, etc.)
+│   ├── shared/           # Layout-level components rendered in app/layout.tsx
+│   │   ├── Navbar/       # Fixed navigation bar
+│   │   └── Footer/       # Site footer
+│   ├── home/             # Homepage-specific section components
+│   └── ui/               # shadcn/ui primitives (not modified directly; regenerated via CLI)
 │
 ├── core/                 # Core business logic, domain rules, and workflows
 │
@@ -51,8 +55,11 @@ Next.js App Router directory. Every folder here maps to a URL segment. Place pag
 
 ### `components/`
 Reusable UI components shared across multiple pages. Organized into:
+- `shared/` — layout-level components rendered globally via `app/layout.tsx` (e.g. `Navbar/`, `Footer/`). Add here only when a component is truly global.
+- `home/` — homepage-specific section components. Each is its own directory. Composed in `app/page.tsx`.
 - `ui/` — low-level shadcn/ui primitives (not modified directly; regenerated via CLI)
-- Feature-specific components can be added at the top level (e.g., `components/PinBuilder.tsx`)
+
+All components follow the collocated directory pattern — see `markdowns/tech/conventions.md`.
 
 ### `core/`
 The heart of the application's business logic. Contains domain-specific rules and workflows that are independent of any framework or transport layer (e.g., pricing calculations, proof generation logic).

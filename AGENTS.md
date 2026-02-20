@@ -20,3 +20,4 @@ For more detailed information, please refer to the following documents:
 | Target User Personas   | `markdowns/users/personas.md`                   |
 | Technology Stack       | `markdowns/tech/stack.md`                       |
 | Folder Architecture    | `markdowns/tech/architecture.md`                |
+| Code Conventions       | `markdowns/tech/conventions.md`                 |
