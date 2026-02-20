@@ -17,7 +17,7 @@ export function TrustStrip() {
           className="flex flex-wrap justify-center md:justify-between items-center gap-4"
           variants={shouldReduceMotion ? undefined : tightStaggerContainerVariants}
           initial={shouldReduceMotion ? false : "hidden"}
-          whileInView="visible"
+          whileInView={shouldReduceMotion ? undefined : "visible"}
           viewport={{ once: true, amount: 0.5 }}
         >
           {TRUST_ITEMS.map((item) => (
