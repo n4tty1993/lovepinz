@@ -5,7 +5,7 @@ export function CustomerExamples() {
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#D4972A] mb-3">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#1F5C53] mb-3">
             Gallery
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#2C1A0E] tracking-tight">
@@ -20,7 +20,7 @@ export function CustomerExamples() {
           {EXAMPLES.map((ex, i) => (
             <div
               key={i}
-              className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-sm shadow-amber-100/60 border border-[#F0C060]/15"
+              className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-sm shadow-teal-100/40 border border-[#2A7A6F]/15"
             >
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${ex.gradient} transition-transform duration-300 group-hover:scale-[1.03]`}
