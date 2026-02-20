@@ -10,25 +10,28 @@ they are not part of the homepage component tree.
 
 | # | Component | Location | Background |
 |---|-----------|----------|------------|
-| 1 | HeroSection | `components/home/HeroSection/` | `#0A0A0A` dark |
-| 2 | TrustStrip | `components/home/TrustStrip/` | `#111111` dark |
-| 3 | HowItWorks | `components/home/HowItWorks/` | `#FAF9F7` light |
-| 4 | WhyMagnetic | `components/home/WhyMagnetic/` | `#111111` dark |
-| 5 | CustomerExamples | `components/home/CustomerExamples/` | `#FAF9F7` light |
-| 6 | PricingSection | `components/home/PricingSection/` | `#0A0A0A` dark |
-| 7 | UseCases | `components/home/UseCases/` | `#FAF9F7` light |
+| 1 | HeroSection | `components/home/HeroSection/` | `#FFFFFF` white |
+| 2 | TrustStrip | `components/home/TrustStrip/` | `#FFF0E8` peach |
+| 3 | HowItWorks | `components/home/HowItWorks/` | `#EDF5EA` sage |
+| 4 | WhyMagnetic | `components/home/WhyMagnetic/` | `#FFF9F4` cream |
+| 5 | CustomerExamples | `components/home/CustomerExamples/` | `#FFFFFF` white |
+| 6 | PricingSection | `components/home/PricingSection/` | `#FFF0E8` peach |
+| 7 | UseCases | `components/home/UseCases/` | `#EDF5EA` sage |
 | 8 | FAQSection | `components/home/FAQSection/` | `#FFFFFF` white |
-| 9 | FinalCTA | `components/home/FinalCTA/` | `#0A0A0A` dark |
+| 9 | FinalCTA | `components/home/FinalCTA/` | `#F0C060` champagne |
 
-## Brand Colors
+## Brand Color Tokens
 
-| Token | Value | Usage |
+| Token | Value | Used In |
 |---|---|---|
-| `--brand-gold` | `#C9A84C` | Primary accent, CTAs, icons |
-| `--brand-gold-hover` | `#B8913A` | Hover state for gold elements |
-| `--brand-dark` | `#0A0A0A` | Primary dark background |
-| `--brand-dark-secondary` | `#111111` | Secondary dark sections |
-| `--brand-light` | `#FAF9F7` | Light section background |
+| White `--brand-white` | `#FFFFFF` | Hero, CustomerExamples, FAQ |
+| Cream `--brand-cream` | `#FFF9F4` | WhyMagnetic, Footer |
+| Peach `--brand-peach` | `#FFF0E8` | TrustStrip, Pricing, card accents |
+| Sage `--brand-sage` | `#EDF5EA` | HowItWorks, UseCases |
+| Champagne `--brand-champagne` | `#F0C060` | All CTAs, accents, FinalCTA bg |
+| Champagne hover `--brand-champagne-hover` | `#D4972A` | Button hover, eyebrow labels |
+| Text dark `--brand-text` | `#2C1A0E` | All body text, headlines |
+| Text muted `--brand-muted` | `#7A6458` | Secondary text, descriptions |
 
 ## Editing Content
 
@@ -49,4 +52,5 @@ All editable copy and data lives in `.constants.ts` files alongside each compone
 
 ## Design Reference
 
-Full design decisions documented in `docs/plans/2026-02-20-homepage-design.md`.
+Original design spec: `docs/plans/2026-02-20-homepage-design.md`
+Redesign spec (Confetti Pop palette): `docs/plans/2026-02-20-homepage-redesign.md`
