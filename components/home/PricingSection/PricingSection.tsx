@@ -44,11 +44,6 @@ export function PricingSection() {
               variants={shouldReduceMotion ? undefined : fadeUpVariants}
               whileHover={shouldReduceMotion ? undefined : { y: -8 }}
               transition={HOVER_SPRING}
-              animate={
-                tier.popular && !shouldReduceMotion
-                  ? { scale: [1, 1.01, 1] }
-                  : undefined
-              }
               className={`relative rounded-2xl p-8 border bg-white shadow-sm ${
                 tier.popular
                   ? "ring-2 ring-[#2A7A6F] border-[#2A7A6F]/30 shadow-teal-100/60"
