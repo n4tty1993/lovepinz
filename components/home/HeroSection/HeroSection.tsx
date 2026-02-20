@@ -1,36 +1,80 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { TRUST_ITEMS } from "@/components/home/TrustStrip/TrustStrip.constants";
+import {
+  EASE_EXPO_OUT,
+  fadeUpVariants,
+  staggerContainerVariants,
+} from "@/constants/animations";
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
-    <section className="relative min-h-screen bg-white flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#FFF0E8_0%,_transparent_60%)] pointer-events-none" />
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen bg-white flex items-center overflow-hidden"
+    >
+      {/* Parallax background gradient */}
+      <motion.div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#FFF0E8_0%,_transparent_60%)] pointer-events-none"
+        style={shouldReduceMotion ? undefined : { y: bgY }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
-        <div className="flex flex-col gap-8">
-          <div className="inline-flex items-center gap-2 w-fit px-4 py-1.5 rounded-full border border-[#2A7A6F]/30 bg-[#E8F5F3]">
+
+        {/* Text stagger container */}
+        <motion.div
+          className="flex flex-col gap-8"
+          variants={shouldReduceMotion ? undefined : staggerContainerVariants}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+        >
+          <motion.div
+            variants={shouldReduceMotion ? undefined : fadeUpVariants}
+            className="inline-flex items-center gap-2 w-fit px-4 py-1.5 rounded-full border border-[#2A7A6F]/30 bg-[#E8F5F3]"
+          >
             <span className="w-2 h-2 rounded-full bg-[#2A7A6F] animate-pulse" />
             <span className="text-xs font-semibold text-[#1F5C53] tracking-widest uppercase">
               Custom Enamel Pins
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C1A0E] leading-[1.05] tracking-tight">
+          <motion.h1
+            variants={shouldReduceMotion ? undefined : fadeUpVariants}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C1A0E] leading-[1.05] tracking-tight"
+          >
             Design Your Own{" "}
             <span className="relative inline-block">
               <span className="relative z-10 text-[#2A7A6F]">Magnetic</span>
               <span className="absolute bottom-1 left-0 w-full h-[3px] bg-[#2A7A6F]/40 rounded" />
             </span>{" "}
             Pins
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg text-[#7A6458] max-w-lg leading-relaxed">
+          <motion.p
+            variants={shouldReduceMotion ? undefined : fadeUpVariants}
+            className="text-lg text-[#7A6458] max-w-lg leading-relaxed"
+          >
             Custom enamel pins with strong magnetic backing.{" "}
             <span className="text-[#2C1A0E] font-semibold">No holes. No fabric damage.</span>{" "}
             Minimum 25 pieces.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <motion.div
+            variants={shouldReduceMotion ? undefined : fadeUpVariants}
+            className="flex flex-col sm:flex-row gap-3"
+          >
             <Link
               href="/design"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
@@ -43,19 +87,28 @@ export function HeroSection() {
             >
               Check our Pricing
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
+          <motion.div
+            variants={shouldReduceMotion ? undefined : fadeUpVariants}
+            className="flex flex-wrap gap-x-5 gap-y-2 pt-2"
+          >
             {TRUST_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-1.5">
                 <span className="text-[#2A7A6F] font-bold text-sm">✓</span>
                 <span className="text-sm text-[#7A6458]">{item}</span>
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40">
+        {/* Product image — delayed entrance after text */}
+        <motion.div
+          className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40"
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: EASE_EXPO_OUT, delay: 0.5 }}
+        >
           <div className="absolute inset-0 bg-gradient-to-br from-[#FFF0E8] via-[#FFE4CC] to-[#FFDAB0] flex items-center justify-center">
             <div className="text-center">
               <div className="w-20 h-20 rounded-full bg-white/70 border border-[#2A7A6F]/30 flex items-center justify-center mx-auto mb-4 shadow-md">
@@ -66,7 +119,7 @@ export function HeroSection() {
           </div>
           <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#2A7A6F]/30 rounded-tr-2xl" />
           <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#2A7A6F]/30 rounded-bl-2xl" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
