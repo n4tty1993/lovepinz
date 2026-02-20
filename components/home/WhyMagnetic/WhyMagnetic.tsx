@@ -15,7 +15,7 @@ export function WhyMagnetic() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <div className="rounded-2xl border border-[#2C1A0E]/8 bg-white p-8 shadow-sm shadow-amber-50">
+          <div className="rounded-2xl border border-[#2C1A0E]/8 bg-white p-8 shadow-sm shadow-amber-100/60">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
                 <X className="w-4 h-4 text-red-400" />

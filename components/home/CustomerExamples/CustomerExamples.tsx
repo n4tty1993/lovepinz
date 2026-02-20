@@ -23,7 +23,7 @@ export function CustomerExamples() {
               className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-sm shadow-amber-100/60 border border-[#F0C060]/15"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${ex.gradient} transition-transform duration-300 group-hover:scale-105`}
+                className={`absolute inset-0 bg-gradient-to-br ${ex.gradient} transition-transform duration-300 group-hover:scale-[1.03]`}
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full bg-white/60 flex items-center justify-center shadow-sm">
