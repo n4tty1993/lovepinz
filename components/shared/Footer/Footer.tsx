@@ -3,20 +3,20 @@ import { NAV_LINKS, POLICY_LINKS } from "./Footer.constants";
 
 export function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-white/5">
+    <footer className="bg-[#FFF9F4] border-t border-[#F0C060]/20">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <p className="text-white font-bold text-xl mb-3">
-              Magnetic<span className="text-[#C9A84C]">Pins</span>
+            <p className="text-[#2C1A0E] font-bold text-xl mb-3">
+              Magnetic<span className="text-[#F0C060]">Pins</span>
             </p>
-            <p className="text-[#E5E5E5]/40 text-sm leading-relaxed max-w-xs">
+            <p className="text-[#7A6458] text-sm leading-relaxed max-w-xs">
               The easiest way to create custom magnetic pins — no holes, no fabric damage.
             </p>
           </div>
 
           <div>
-            <p className="text-white/60 text-xs font-semibold tracking-widest uppercase mb-5">
+            <p className="text-[#7A6458] text-xs font-semibold tracking-widest uppercase mb-5">
               Navigation
             </p>
             <ul className="flex flex-col gap-3">
@@ -24,7 +24,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#E5E5E5]/50 hover:text-white text-sm transition-colors"
+                    className="text-[#7A6458] hover:text-[#D4972A] text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -34,7 +34,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-white/60 text-xs font-semibold tracking-widest uppercase mb-5">
+            <p className="text-[#7A6458] text-xs font-semibold tracking-widest uppercase mb-5">
               Policies
             </p>
             <ul className="flex flex-col gap-3">
@@ -42,7 +42,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[#E5E5E5]/50 hover:text-white text-sm transition-colors"
+                    className="text-[#7A6458] hover:text-[#D4972A] text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -53,12 +53,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5 px-6 py-5">
+      <div className="border-t border-[#F0C060]/10 px-6 py-5">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[#E5E5E5]/30 text-xs">
+          <p className="text-[#7A6458] text-xs">
             © {new Date().getFullYear()} MagneticPins. All rights reserved.
           </p>
-          <p className="text-[#E5E5E5]/20 text-xs">Made in the USA 🇺🇸</p>
+          <p className="text-[#7A6458] text-xs">Made in the USA 🇺🇸</p>
         </div>
       </div>
     </footer>
