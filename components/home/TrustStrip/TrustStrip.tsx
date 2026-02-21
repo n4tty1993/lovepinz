@@ -11,7 +11,7 @@ export function TrustStrip() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="bg-[#FFF0E8] border-y border-[#2A7A6F]/20">
+    <div className="bg-[#FFF0E8] border-y border-[#2A7A6F]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <motion.div
           className="flex flex-wrap justify-center md:justify-between items-center gap-4"

@@ -24,7 +24,7 @@ export function WhyMagnetic() {
   const headerY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <section ref={sectionRef} className="bg-[#FFF9F4] py-24">
+    <section ref={sectionRef} className="bg-[#FFF9F4] py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header with parallax drift */}

@@ -22,3 +22,6 @@ For more detailed information, please refer to the following documents:
 | Folder Architecture    | `markdowns/tech/architecture.md`                |
 | Code Conventions       | `markdowns/tech/conventions.md`                 |
 | Animation Guidelines   | `markdowns/tech/animations.md`                  |
+| Homepage Spec          | `markdowns/product/homepage.md`                 |
+| PDP Spec               | `markdowns/product/pdp.md`                      |
+| PDP Architecture       | `markdowns/tech/pdp-architecture.md`            |
