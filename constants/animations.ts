@@ -50,7 +50,7 @@ export const scalePopVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", stiffness: 500, damping: 20, delay: 0.15 },
+    transition: { type: "spring" as const, stiffness: 500, damping: 20, delay: 0.15 },
   },
 };
 

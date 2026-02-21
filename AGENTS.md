@@ -21,3 +21,4 @@ For more detailed information, please refer to the following documents:
 | Technology Stack       | `markdowns/tech/stack.md`                       |
 | Folder Architecture    | `markdowns/tech/architecture.md`                |
 | Code Conventions       | `markdowns/tech/conventions.md`                 |
+| Animation Guidelines   | `markdowns/tech/animations.md`                  |
