@@ -61,7 +61,7 @@ export function FinalCTA() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-[#2A7A6F] py-32">
+    <section className="bg-[#2A7A6F] py-32 overflow-hidden">
       <motion.div
         className="max-w-4xl mx-auto px-6 text-center"
         variants={shouldReduceMotion ? undefined : staggerContainerVariants}
@@ -100,7 +100,7 @@ export function FinalCTA() {
           className="mb-10"
         >
           <MagneticButton
-            href="/design"
+            href="/product"
             className="inline-flex items-center justify-center px-10 py-5 rounded-full text-lg font-bold bg-white text-[#2C1A0E] hover:bg-[#FFF9F4] transition-colors shadow-2xl shadow-teal-900/20"
           >
             Start Designing

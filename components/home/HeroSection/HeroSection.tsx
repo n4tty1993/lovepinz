@@ -81,7 +81,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-3"
           >
             <Link
-              href="/design"
+              href="/product"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
             >
               Start Designing
