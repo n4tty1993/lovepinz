@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useConfigurator } from "@/hooks/useConfigurator";
 
 export function DesignPreview() {
@@ -9,9 +10,12 @@ export function DesignPreview() {
     <div className="sticky top-24">
       {state.previewUrl ? (
         <div className="rounded-3xl border border-[#2A7A6F]/20 overflow-hidden shadow-lg shadow-teal-100/40">
-          <img
+          <Image
             src={state.previewUrl}
             alt="Your design preview"
+            width={400}
+            height={400}
+            unoptimized
             className="w-full aspect-square object-contain bg-white p-8"
           />
         </div>

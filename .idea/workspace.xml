@@ -4,13 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0b1e34a-4a7b-40af-a6c2-6a81afdf9136" name="Changes" comment="">
+    <list default="true" id="f0b1e34a-4a7b-40af-a6c2-6a81afdf9136" name="Changes" comment="add pdp and checkout">
+      <change afterPath="$PROJECT_DIR$/app/checkout/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/checkout/CheckoutForm/CheckoutForm.constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/checkout/CheckoutForm/CheckoutForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/pdp/HeroCarousel/HeroCarousel.constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/pdp/HeroCarousel/HeroCarousel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/Providers/Providers.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AGENTS.md" beforeDir="false" afterPath="$PROJECT_DIR$/AGENTS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/home/FinalCTA/FinalCTA.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/home/FinalCTA/FinalCTA.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/home/TrustStrip/TrustStrip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/home/TrustStrip/TrustStrip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/home/WhyMagnetic/WhyMagnetic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/home/WhyMagnetic/WhyMagnetic.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markdowns/tech/architecture.md" beforeDir="false" afterPath="$PROJECT_DIR$/markdowns/tech/architecture.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/product/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/product/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/FinishStep/FinishStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/FinishStep/FinishStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/PriceDisplay/PriceDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/PriceDisplay/PriceDisplay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/QuantityStep/QuantityStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/QuantityStep/QuantityStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/SizeStep/SizeStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/SizeStep/SizeStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/UploadStep/UploadStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/UploadStep/UploadStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/DesignPreview/DesignPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/DesignPreview/DesignPreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/PDPHero/PDPHero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/PDPHero/PDPHero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/ConfiguratorContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/contexts/ConfiguratorContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,29 +57,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;dev.nx.console.last_ai_configure_notification_timestamp&quot;: &quot;1771616739681&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
-    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/netanel/Desktop/projects/pin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/netanel/Desktop/projects/pin/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "dev.nx.console.last_ai_configure_notification_timestamp": "1771616739681",
+    "git-widget-placeholder": "feature/upload-wizard",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "last_opened_file_path": "/Users/netanel/Desktop/projects/pin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "/Users/netanel/Desktop/projects/pin/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.Next.js: server-side">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -96,9 +112,24 @@
       <workItem from="1771616662286" duration="2989000" />
       <workItem from="1771619664442" duration="8712000" />
     </task>
+    <task id="LOCAL-00001" summary="add pdp">
+      <option name="closed" value="true" />
+      <created>1771709809341</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1771709809341</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add pdp" />
+    <MESSAGE value="add pdp logic" />
+    <MESSAGE value="add pdp and checkout" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pdp and checkout" />
   </component>
 </project>
