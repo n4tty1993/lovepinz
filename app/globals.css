@@ -126,6 +126,21 @@ html {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.3s ease;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
