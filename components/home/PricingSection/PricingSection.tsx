@@ -15,7 +15,6 @@ export function PricingSection() {
   return (
     <section id="pricing" className="bg-[#FFF0E8] py-24">
       <div className="max-w-7xl mx-auto px-6">
-
         <motion.div
           className="text-center mb-16"
           variants={shouldReduceMotion ? undefined : fadeUpVariants}
@@ -55,12 +54,18 @@ export function PricingSection() {
                   Most Popular
                 </div>
               )}
-              <p className="text-[#7A6458] text-sm mb-2">{tier.quantity} pieces</p>
+              <p className="text-[#7A6458] text-sm mb-2">
+                {tier.quantity} pieces
+              </p>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-bold text-[#2C1A0E]">{tier.unitPrice}</span>
+                <span className="text-4xl font-bold text-[#2C1A0E]">
+                  {tier.unitPrice}
+                </span>
                 <span className="text-[#7A6458] text-sm">/each</span>
               </div>
-              <p className="text-[#2A7A6F] text-sm font-medium">Total: {tier.total}</p>
+              <p className="text-[#2A7A6F] text-sm font-medium">
+                Total: {tier.total}
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -76,7 +81,7 @@ export function PricingSection() {
             Final price depends on size &amp; finish selected.
           </p>
           <Link
-            href="/design"
+            href="/product"
             className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
           >
             Calculate My Price

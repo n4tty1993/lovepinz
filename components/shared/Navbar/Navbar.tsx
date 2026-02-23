@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
 import { NAV_LINKS } from "./Navbar.constants";
 
 export function Navbar() {
@@ -20,10 +21,11 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-[#2C1A0E] font-bold text-lg tracking-tight">
-            Magnetic<span className="text-[#2A7A6F]">Pins</span>
-          </span>
+        <Link
+          href="/"
+          className="text-[#2C1A0E] font-extrabold text-xl tracking-tight"
+        >
+          LovePinz
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -39,7 +41,7 @@ export function Navbar() {
         </nav>
 
         <Link
-          href="/design"
+          href="/product"
           className="inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-semibold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-colors"
         >
           Start Designing

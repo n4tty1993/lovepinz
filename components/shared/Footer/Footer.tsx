@@ -7,11 +7,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <p className="text-[#2C1A0E] font-bold text-xl mb-3">
-              Magnetic<span className="text-[#2A7A6F]">Pins</span>
+            <p className="text-[#2C1A0E] font-extrabold text-xl mb-3">
+              LovePinz
             </p>
             <p className="text-[#7A6458] text-sm leading-relaxed max-w-xs">
-              The easiest way to create custom magnetic pins — no holes, no fabric damage.
+              The easiest way to create custom magnetic pins — no holes, no
+              fabric damage.
             </p>
           </div>
 
@@ -56,7 +57,7 @@ export function Footer() {
       <div className="border-t border-[#2A7A6F]/10 px-6 py-5">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-[#7A6458] text-xs">
-            © {new Date().getFullYear()} MagneticPins. All rights reserved.
+            © {new Date().getFullYear()} LovePinz. All rights reserved.
           </p>
           <p className="text-[#7A6458] text-xs">Made in the USA 🇺🇸</p>
         </div>
