@@ -14,8 +14,8 @@ export const FINISH_OPTIONS: FinishOption[] = [
   { value: "rose-gold", label: "Rose Gold", color: "#C9856B" },
 ];
 
-export const ACCEPTED_FILE_TYPES = ".png,.jpg,.jpeg,.svg,.ai,.pdf,.eps";
-export const ACCEPTED_FILE_TYPES_LABEL = "PNG, JPG, SVG, PDF, AI, EPS";
+export const ACCEPTED_FILE_TYPES = ".jpg,.jpeg,.png";
+export const ACCEPTED_FILE_TYPES_LABEL = "JPG, JPEG, PNG";
 export const MAX_FILE_SIZE_MB = 25;
 
 export const STYLE_OPTIONS = [

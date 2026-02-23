@@ -1,11 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useConfigurator } from "@/hooks/useConfigurator";
-import { STYLE_OPTIONS } from "@/components/pdp/Configurator/Configurator.constants";
 import { CAROUSEL_SLIDES } from "./HeroCarousel.constants";
 
 function CarouselSlide({ slide }: { slide: (typeof CAROUSEL_SLIDES)[number] }) {
@@ -17,43 +14,7 @@ function CarouselSlide({ slide }: { slide: (typeof CAROUSEL_SLIDES)[number] }) {
   );
 }
 
-function DesignPreviewSlide({ onCTA }: { onCTA: () => void }) {
-  const { state } = useConfigurator();
-  const selectedStyle = STYLE_OPTIONS.find((o) => o.id === state.selectedStyle);
-  const designReady = state.wizardStep === "result";
-
-  return (
-    <div className="relative min-h-[290px] md:min-h-[420px] overflow-hidden bg-[#111] flex items-center justify-center flex-[0_0_100%]">
-      <Image
-        src={state.previewUrl!}
-        alt="Your design"
-        width={320}
-        height={320}
-        unoptimized
-        className="max-h-[240px] md:max-h-[320px] max-w-full object-contain rounded-xl shadow-[0_16px_48px_rgba(0,0,0,0.6)] p-5 transition-[filter] duration-300"
-        style={{ filter: selectedStyle?.filter ?? "none" }}
-      />
-
-      {designReady && selectedStyle && (
-        <div className="absolute top-3 right-4 bg-white/[0.12] backdrop-blur-lg text-white rounded-full px-3 py-1 text-[11px] font-bold border border-white/20">
-          ✦ {selectedStyle.label}
-        </div>
-      )}
-
-      <button
-        onClick={onCTA}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-lg text-white rounded-full px-4 py-1.5 text-xs font-bold border border-white/15 cursor-pointer whitespace-nowrap hover:bg-black/60 transition-colors"
-      >
-        Continue configuring ↓
-      </button>
-    </div>
-  );
-}
-
 export function HeroCarousel() {
-  const { state } = useConfigurator();
-  const hasPreview = !!state.previewUrl;
-
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 4000, stopOnInteraction: true }),
   ]);
@@ -74,35 +35,12 @@ export function HeroCarousel() {
     };
   }, [emblaApi, onSelect]);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    if (hasPreview) {
-      emblaApi.plugins().autoplay?.stop();
-    } else {
-      emblaApi.plugins().autoplay?.play();
-    }
-  }, [emblaApi, hasPreview]);
-
-  const scrollToConfigurator = () => {
-    document
-      .getElementById("configurator")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   const scrollTo = useCallback(
     (index: number) => {
       emblaApi?.scrollTo(index);
     },
     [emblaApi],
   );
-
-  if (hasPreview) {
-    return (
-      <div className="md:sticky md:top-24 md:rounded-2xl overflow-hidden">
-        <DesignPreviewSlide onCTA={scrollToConfigurator} />
-      </div>
-    );
-  }
 
   return (
     <div className="md:sticky md:top-24 md:rounded-2xl overflow-hidden">

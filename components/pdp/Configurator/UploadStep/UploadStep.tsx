@@ -399,7 +399,7 @@ export function UploadStep() {
   const handleFile = useCallback(
     (file: File, url: string) => {
       if (!file.type.startsWith("image/")) {
-        setError("Only image files supported (PNG, JPG, SVG, etc.).");
+        setError("Only image files supported (JPG, JPEG, PNG).");
         return;
       }
       setError(null);
