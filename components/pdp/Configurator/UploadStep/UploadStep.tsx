@@ -13,6 +13,7 @@ import {
   PROCESSING_LABELS,
 } from "../Configurator.constants";
 import type { StyleOption } from "@/contexts/ConfiguratorContext";
+import { trackUploadImage } from "@/lib/meta-pixel";
 
 function WizardStepper({ current }: { current: string }) {
   const ci = WIZARD_STEPS.indexOf(current as (typeof WIZARD_STEPS)[number]);
@@ -403,6 +404,7 @@ export function UploadStep() {
       }
       setError(null);
       dispatch({ type: "SET_FILE", file, previewUrl: url });
+      trackUploadImage();
     },
     [dispatch],
   );

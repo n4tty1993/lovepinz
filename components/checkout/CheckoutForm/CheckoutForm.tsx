@@ -5,6 +5,7 @@ import { useForm, type UseFormRegister } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
+import { trackPurchase } from "@/lib/meta-pixel";
 import {
   SIZE_OPTIONS,
   FINISH_OPTIONS,
@@ -435,6 +436,7 @@ function SorryModal({
 /* ── Main CheckoutForm ────────────────────────────────── */
 export function CheckoutForm() {
   const [showModal, setShowModal] = useState(false);
+  const { state, derived } = useConfigurator();
 
   const {
     register,
@@ -463,6 +465,13 @@ export function CheckoutForm() {
 
   const onSubmit = async (_data: CheckoutFormData) => {
     await new Promise((r) => setTimeout(r, 1200));
+    trackPurchase({
+      contentIds: ["custom-magnetic-pin"],
+      contentType: "product",
+      value: derived.totalPrice,
+      currency: "USD",
+      numItems: state.quantity,
+    });
     setShowModal(true);
   };
 

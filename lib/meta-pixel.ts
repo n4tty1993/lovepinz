@@ -84,6 +84,11 @@ export function trackInitiateCheckout(params: {
   });
 }
 
+/** Fires when a user uploads a design image on the product page. */
+export function trackUploadImage() {
+  fbq("UploadImage");
+}
+
 /** Fires after a successful purchase / order confirmation. */
 export function trackPurchase(params: {
   contentIds: string[];
