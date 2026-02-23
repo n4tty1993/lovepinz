@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
-import Script from "next/script";
+import { Providers } from "@/components/shared/Providers/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <head>
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -57,6 +67,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </head>
 
       <body className={`${geistSans.variable} antialiased`}>
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
         <Navbar />
         {children}
         <Footer />
@@ -69,10 +84,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-
-        <Navbar />
-        {children}
-        <Footer />
       </body>
     </html>
   );

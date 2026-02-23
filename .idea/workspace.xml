@@ -4,12 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0b1e34a-4a7b-40af-a6c2-6a81afdf9136" name="Changes" comment="">
+    <list default="true" id="f0b1e34a-4a7b-40af-a6c2-6a81afdf9136" name="Changes" comment="add pdp and checkout">
+      <change afterPath="$PROJECT_DIR$/app/checkout/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/checkout/CheckoutForm/CheckoutForm.constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/checkout/CheckoutForm/CheckoutForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/pdp/HeroCarousel/HeroCarousel.constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/pdp/HeroCarousel/HeroCarousel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/Providers/Providers.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/home/PricingSection/PricingSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/home/PricingSection/PricingSection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/shared/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/shared/Navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/product/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/product/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/Configurator.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/FinishStep/FinishStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/FinishStep/FinishStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/PriceDisplay/PriceDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/PriceDisplay/PriceDisplay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/QuantityStep/QuantityStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/QuantityStep/QuantityStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/SizeStep/SizeStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/SizeStep/SizeStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/Configurator/UploadStep/UploadStep.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/Configurator/UploadStep/UploadStep.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/DesignPreview/DesignPreview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/DesignPreview/DesignPreview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/pdp/PDPHero/PDPHero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/pdp/PDPHero/PDPHero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contexts/ConfiguratorContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/contexts/ConfiguratorContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -19,11 +34,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feature/upload-wizard" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -54,7 +64,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "dev.nx.console.last_ai_configure_notification_timestamp": "1771616739681",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/upload-wizard",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "last_opened_file_path": "/Users/netanel/Desktop/projects/pin",
@@ -65,7 +75,7 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
     "ts.external.directory.path": "/Users/netanel/Desktop/projects/pin/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }

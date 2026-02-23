@@ -15,6 +15,8 @@
     "@next/third-parties": "16.1.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.575.0",
     "mongoose": "^9.2.1",
     "motion": "^12.34.3",
@@ -29,6 +31,7 @@
     "yup": "1.7.1"
   },
   "devDependencies": {
+    "@react-grab/mcp": "^0.1.18",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

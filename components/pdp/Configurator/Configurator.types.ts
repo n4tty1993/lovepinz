@@ -9,4 +9,5 @@ export interface SizeOption {
 export interface FinishOption {
   value: PinFinish;
   label: string;
+  color: string;
 }
