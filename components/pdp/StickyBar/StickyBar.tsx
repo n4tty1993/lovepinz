@@ -1,10 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
+import { trackAddToCart } from "@/lib/meta-pixel";
 
 export function StickyBar() {
+  const router = useRouter();
   const shouldReduceMotion = useReducedMotion();
   const { state, derived } = useConfigurator();
 
@@ -25,7 +28,15 @@ export function StickyBar() {
         <button
           disabled={!derived.canAddToCart}
           onClick={() => {
-            console.log("Add to cart", { state, derived });
+            trackAddToCart({
+              contentName: "Custom Magnetic Pin",
+              contentIds: ["custom-magnetic-pin"],
+              contentType: "product",
+              value: derived.totalPrice,
+              currency: "USD",
+              quantity: state.quantity,
+            });
+            router.push("/checkout");
           }}
           className="flex-1 max-w-[200px] py-3 rounded-full text-sm font-bold bg-[#F0C060] text-[#2C1A0E] hover:bg-[#D4972A] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >

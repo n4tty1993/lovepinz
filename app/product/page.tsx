@@ -1,4 +1,5 @@
 import { PDPHero } from "@/components/pdp/PDPHero/PDPHero";
+import { PDPViewContent } from "@/components/pdp/PDPViewContent";
 import { StickyBar } from "@/components/pdp/StickyBar/StickyBar";
 import { TrustBar } from "@/components/pdp/TrustBar/TrustBar";
 import { HowItWorksMini } from "@/components/pdp/HowItWorksMini/HowItWorksMini";
@@ -11,6 +12,9 @@ import { PDPFinalCTA } from "@/components/pdp/PDPFinalCTA/PDPFinalCTA";
 export default function ProductPage() {
   return (
     <main className="pb-16 md:pb-0">
+      {/* Meta Pixel: ViewContent */}
+      <PDPViewContent />
+
       {/* Interactive zone */}
       <PDPHero />
       <StickyBar />

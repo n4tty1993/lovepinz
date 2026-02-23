@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
+import { trackAddToCart } from "@/lib/meta-pixel";
 import {
   STYLE_OPTIONS,
   SIZE_OPTIONS,
@@ -108,7 +109,17 @@ export function PriceDisplay() {
       {/* Add to Cart button */}
       <button
         disabled={!derived.canAddToCart}
-        onClick={() => router.push("/checkout")}
+        onClick={() => {
+          trackAddToCart({
+            contentName: "Custom Magnetic Pin",
+            contentIds: ["custom-magnetic-pin"],
+            contentType: "product",
+            value: derived.totalPrice,
+            currency: "USD",
+            quantity: state.quantity,
+          });
+          router.push("/checkout");
+        }}
         className="w-full mt-3 py-4 rounded-2xl text-[17px] font-extrabold bg-[#F0C060] text-[#1e1e2e] hover:bg-[#d4a030] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_4px_14px_rgba(240,192,96,0.6)]"
       >
         Add to Cart

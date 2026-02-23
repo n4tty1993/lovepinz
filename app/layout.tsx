@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { Providers } from "@/components/shared/Providers/Providers";
+import { MetaPixelPageView } from "@/components/shared/MetaPixelPageView";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <body className={`${geistSans.variable} antialiased`}>
         <Providers>
+          <MetaPixelPageView />
           <Navbar />
           {children}
           <Footer />
