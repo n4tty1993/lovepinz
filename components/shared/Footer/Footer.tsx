@@ -59,7 +59,6 @@ export function Footer() {
           <p className="text-[#7A6458] text-xs">
             © {new Date().getFullYear()} LovePinz. All rights reserved.
           </p>
-          <p className="text-[#7A6458] text-xs">Made in the USA 🇺🇸</p>
         </div>
       </div>
     </footer>

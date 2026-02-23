@@ -10,7 +10,7 @@ export function FinishStep() {
   return (
     <div>
       <h3 className="text-sm font-semibold tracking-[0.2em] uppercase text-[#1F5C53] mb-3">
-        4. Select Finish
+        Select Finish
       </h3>
 
       <div className="grid grid-cols-2 gap-3">

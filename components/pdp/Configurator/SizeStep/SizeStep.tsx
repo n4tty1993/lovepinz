@@ -41,9 +41,6 @@ export function SizeStep() {
   return (
     <div className="bg-white rounded-2xl p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
       <div className="flex items-center gap-2.5 mb-5">
-        <span className="w-[26px] h-[26px] rounded-full bg-[#2A7A6F] inline-flex items-center justify-center font-extrabold text-xs text-white shrink-0">
-          2
-        </span>
         <span className="font-bold text-base">Choose Size</span>
         <div ref={tooltipRef} className="relative">
           <button

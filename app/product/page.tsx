@@ -7,6 +7,7 @@ import { ProductSpecs } from "@/components/pdp/ProductSpecs/ProductSpecs";
 import { MagnetStrength } from "@/components/pdp/MagnetStrength/MagnetStrength";
 import { CustomerShowcase } from "@/components/pdp/CustomerShowcase/CustomerShowcase";
 import { PDPFAQSection } from "@/components/pdp/PDPFAQSection/PDPFAQSection";
+import { ArtworkGuidelines } from "@/components/pdp/ArtworkGuidelines/ArtworkGuidelines";
 import { PDPFinalCTA } from "@/components/pdp/PDPFinalCTA/PDPFinalCTA";
 
 export default function ProductPage() {
@@ -26,6 +27,7 @@ export default function ProductPage() {
       <MagnetStrength />
       <CustomerShowcase />
       <PDPFAQSection />
+      <ArtworkGuidelines />
       <PDPFinalCTA />
     </main>
   );

@@ -2,7 +2,7 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Artwork Guidelines", href: "/artwork-guidelines" },
-  { label: "FAQ", href: "#faq" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export const POLICY_LINKS = [
