@@ -43,7 +43,7 @@ export function PriceDisplay() {
       value: formatPrice(derived.unitPrice),
       highlight: true,
     },
-    { label: "Production", value: "10–14 business days" },
+    { label: "Delivery", value: "25 business days" },
     { label: "Shipping", value: "FREE", green: true },
   ];
 
@@ -98,9 +98,7 @@ export function PriceDisplay() {
           <div className="mx-3 mb-3 bg-[#edf5ea] rounded-[10px] px-3.5 py-2.5 flex items-center gap-2.5">
             <span className="text-base">🚚</span>
             <span className="text-xs text-[#555]">
-              Estimated delivery in{" "}
-              <strong className="text-[#1e1e2e]">10–14 business days</strong>{" "}
-              after proof approval
+              Delivery in 25 business days after proof approval
             </span>
           </div>
         </div>

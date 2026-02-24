@@ -3,14 +3,27 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 import { CAROUSEL_SLIDES } from "./HeroCarousel.constants";
 
-function CarouselSlide({ slide }: { slide: (typeof CAROUSEL_SLIDES)[number] }) {
+function CarouselSlide({
+  slide,
+  priority,
+}: {
+  slide: (typeof CAROUSEL_SLIDES)[number];
+  priority: boolean;
+}) {
   return (
-    <div
-      className="h-[300px] md:h-full md:min-h-[420px] select-none flex-[0_0_100%]"
-      style={{ background: slide.bg }}
-    />
+    <div className="aspect-square select-none flex-[0_0_100%] relative">
+      <Image
+        src={slide.src}
+        alt={slide.alt}
+        fill
+        priority={priority}
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+    </div>
   );
 }
 
@@ -47,8 +60,8 @@ export function HeroCarousel() {
       <div className="relative">
         <div ref={emblaRef} className="overflow-hidden">
           <div className="flex">
-            {CAROUSEL_SLIDES.map((slide) => (
-              <CarouselSlide key={slide.id} slide={slide} />
+            {CAROUSEL_SLIDES.map((slide, i) => (
+              <CarouselSlide key={slide.id} slide={slide} priority={i === 0} />
             ))}
           </div>
         </div>

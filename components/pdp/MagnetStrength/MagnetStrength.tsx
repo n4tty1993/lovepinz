@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { CLOTHING_EXAMPLES } from "./MagnetStrength.constants";
 import {
@@ -30,13 +31,18 @@ export function MagnetStrength() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
-            className="rounded-3xl bg-gradient-to-br from-[#FFF0E8] via-[#FFE4CC] to-[#FFDAB0] aspect-square flex items-center justify-center"
+            className="rounded-3xl overflow-hidden aspect-square relative"
             variants={shouldReduceMotion ? undefined : fadeUpVariants}
             initial={shouldReduceMotion ? false : "hidden"}
             whileInView={shouldReduceMotion ? undefined : "visible"}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <span className="text-6xl">🧲</span>
+            <Image
+              src="/assets/how-strong-our-magnets/strong.webp"
+              alt="Close-up of dual neodymium magnet backing"
+              fill
+              className="object-cover"
+            />
           </motion.div>
 
           <motion.div
@@ -71,14 +77,6 @@ export function MagnetStrength() {
                 </div>
               ))}
             </motion.div>
-
-            <motion.p
-              className="text-xs text-[#7A6458] italic"
-              variants={shouldReduceMotion ? undefined : fadeUpVariants}
-            >
-              Note: Not recommended for very thick winter coats or heavily
-              padded materials.
-            </motion.p>
           </motion.div>
         </div>
       </div>

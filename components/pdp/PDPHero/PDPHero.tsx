@@ -5,7 +5,7 @@ import { Configurator } from "@/components/pdp/Configurator/Configurator";
 
 export function PDPHero() {
   return (
-    <section id="configurator" className="bg-[#f7f7fb]">
+    <section id="configurator" className="bg-[#f7f7fb] pt-16 md:pt-20">
       {/* Mobile: carousel full-width above everything */}
       <div className="md:hidden -mx-0">
         <HeroCarousel />

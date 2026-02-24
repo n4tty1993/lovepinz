@@ -85,6 +85,24 @@ export function QuantityStep() {
                 border: `2px solid ${isBest ? "#16a34a" : active ? "#1a1a1a" : "#e5e7eb"}`,
               }}
             >
+              {/* Radio indicator */}
+              <div className="flex justify-center mb-2">
+                <div
+                  className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                    active
+                      ? isBest
+                        ? "border-green-600"
+                        : "border-[#1a1a1a]"
+                      : "border-[#d1d5db]"
+                  }`}
+                >
+                  {active && (
+                    <div
+                      className={`w-2 h-2 rounded-full ${isBest ? "bg-green-600" : "bg-[#1a1a1a]"}`}
+                    />
+                  )}
+                </div>
+              </div>
               {isBest && (
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[8px] font-extrabold px-2 py-0.5 rounded-full whitespace-nowrap tracking-wide">
                   BEST VALUE

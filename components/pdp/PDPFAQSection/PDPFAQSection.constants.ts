@@ -14,7 +14,7 @@ export const PDP_FAQ_ITEMS: FAQItem[] = [
   {
     question: "How long does production take?",
     answer:
-      "Production takes 10-14 business days after you approve your digital proof. Shipping within the US is free and typically takes 3-5 business days after production.",
+      "Delivery takes 25 business days after you approve your digital proof. Shipping within the US is free.",
   },
   {
     question: "What if I need changes after ordering?",

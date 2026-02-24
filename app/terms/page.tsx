@@ -33,10 +33,10 @@ export default function TermsPage() {
           Production Times
         </h3>
         <p>
-          Our estimated production times are 10–14 business days after proof
-          approval. These are estimates and not guarantees. We work hard to meet
-          these timelines, but production may occasionally take longer due to
-          seasonal demand or other factors.
+          Our estimated delivery time is 25 business days after proof approval.
+          These are estimates and not guarantees. We work hard to meet these
+          timelines, but delivery may occasionally take longer due to seasonal
+          demand or other factors.
         </p>
 
         <h3 className="text-2xl font-bold text-[#2C1A0E] mt-8">

@@ -14,8 +14,8 @@ export default function ShippingPolicyPage() {
           Production Timeline
         </h3>
         <p>
-          Our production time is typically <strong>10–14 business days</strong>{" "}
-          after your digital proof is approved.
+          Delivery takes approximately <strong>25 business days</strong> after
+          your digital proof is approved.
         </p>
         <ul className="list-disc pl-6 space-y-3">
           <li>
@@ -26,10 +26,7 @@ export default function ShippingPolicyPage() {
             <strong>Step 2:</strong> You approve the proof.
           </li>
           <li>
-            <strong>Step 3:</strong> Production begins (10-14 business days).
-          </li>
-          <li>
-            <strong>Step 4:</strong> Your order ships out!
+            <strong>Step 3:</strong> Production & delivery (25 business days).
           </li>
         </ul>
 

@@ -12,50 +12,50 @@ The PDP is organized into four experience zones:
 
 Two-column layout on desktop, stacked on mobile.
 
-| Column | Content |
-|--------|---------|
-| **Left** | Live design preview (placeholder when no upload), size reference visual, optional blazer mockup |
-| **Right** | Full configurator (4-step wizard + live pricing + Add to Cart CTA) |
+| Column    | Content                                                                                         |
+| --------- | ----------------------------------------------------------------------------------------------- |
+| **Left**  | Live design preview (placeholder when no upload), size reference visual, optional blazer mockup |
+| **Right** | Full configurator (4-step wizard + live pricing + Add to Cart CTA)                              |
 
 ### Zone 2 — Trust & Process
 
-| # | Component | Description |
-|---|-----------|-------------|
-| 1 | TrustBar | Horizontal reassurance strip near the buy area |
-| 2 | HowItWorksMini | 3-step abbreviated process (Upload → Approve → Ship) |
+| #   | Component      | Description                                          |
+| --- | -------------- | ---------------------------------------------------- |
+| 1   | TrustBar       | Horizontal reassurance strip near the buy area       |
+| 2   | HowItWorksMini | 3-step abbreviated process (Upload → Approve → Ship) |
 
 ### Zone 3 — Validation & Education
 
-| # | Component | Description |
-|---|-----------|-------------|
-| 3 | ProductSpecs | Concise material/backing/finish/thickness specs |
-| 4 | MagnetStrength | Close-up image, strength explanation, clothing examples, transparency note |
-| 5 | CustomerShowcase | UGC-style grid — "Made by our customers" |
-| 6 | PDPFAQSection | Purchase-objection FAQs only |
-| 7 | ArtworkGuidelines | Collapsible accordion with file requirements |
+| #   | Component         | Description                                                                |
+| --- | ----------------- | -------------------------------------------------------------------------- |
+| 3   | ProductSpecs      | Concise material/backing/finish/thickness specs                            |
+| 4   | MagnetStrength    | Close-up image, strength explanation, clothing examples, transparency note |
+| 5   | CustomerShowcase  | UGC-style grid — "Made by our customers"                                   |
+| 6   | PDPFAQSection     | Purchase-objection FAQs only                                               |
+| 7   | ArtworkGuidelines | Collapsible accordion with file requirements                               |
 
 ### Zone 4 — Conversion Reinforcement
 
-| # | Component | Description |
-|---|-----------|-------------|
-| 8 | PDPFinalCTA | "Ready to create your magnetic pins?" — scrolls to configurator |
-| 9 | StickyBar (mobile) | Persistent bottom bar with live total + Add to Cart |
+| #   | Component          | Description                                                     |
+| --- | ------------------ | --------------------------------------------------------------- |
+| 8   | PDPFinalCTA        | "Ready to create your magnetic pins?" — scrolls to configurator |
+| 9   | StickyBar (mobile) | Persistent bottom bar with live total + Add to Cart             |
 
 ## Section Backgrounds
 
 Follow the same alternating-warmth pattern from the homepage:
 
-| # | Component | Background |
-|---|-----------|------------|
-| — | Hero / Configurator | `#FFFFFF` white |
-| 1 | TrustBar | `#FFF0E8` peach |
-| 2 | HowItWorksMini | `#EDF5EA` sage |
-| 3 | ProductSpecs | `#FFF9F4` cream |
-| 4 | MagnetStrength | `#FFFFFF` white |
-| 5 | CustomerShowcase | `#FFF0E8` peach |
-| 6 | PDPFAQSection | `#FFFFFF` white |
-| 7 | ArtworkGuidelines | `#FFF9F4` cream |
-| 8 | PDPFinalCTA | `#F0C060` champagne |
+| #   | Component           | Background          |
+| --- | ------------------- | ------------------- |
+| —   | Hero / Configurator | `#FFFFFF` white     |
+| 1   | TrustBar            | `#FFF0E8` peach     |
+| 2   | HowItWorksMini      | `#EDF5EA` sage      |
+| 3   | ProductSpecs        | `#FFF9F4` cream     |
+| 4   | MagnetStrength      | `#FFFFFF` white     |
+| 5   | CustomerShowcase    | `#FFF0E8` peach     |
+| 6   | PDPFAQSection       | `#FFFFFF` white     |
+| 7   | ArtworkGuidelines   | `#FFF9F4` cream     |
+| 8   | PDPFinalCTA         | `#F0C060` champagne |
 
 ## Configurator Steps
 
@@ -71,12 +71,12 @@ Follow the same alternating-warmth pattern from the homepage:
 
 Radio button group:
 
-| Size | Label |
-|------|-------|
-| 1" | Small |
-| 1.25" | Medium |
-| 1.5" | Large |
-| 2" | Extra Large |
+| Size  | Label       |
+| ----- | ----------- |
+| 1"    | Small       |
+| 1.25" | Medium      |
+| 1.5"  | Large       |
+| 2"    | Extra Large |
 
 Include a small size guide tooltip with visual reference.
 
@@ -86,11 +86,11 @@ Dropdown or stepper input. Minimum order: 25 pieces.
 
 Tier pricing displayed inline:
 
-| Quantity | Price/Unit | Total |
-|----------|-----------|-------|
-| 25 | $3.00 | $75.00 |
-| 50 | $2.60 | $130.00 |
-| 100 | $2.20 | $220.00 |
+| Quantity | Price/Unit | Total   |
+| -------- | ---------- | ------- |
+| 25       | $3.00      | $75.00  |
+| 50       | $2.60      | $130.00 |
+| 100      | $2.20      | $220.00 |
 
 Price updates instantly when quantity changes.
 
@@ -98,12 +98,12 @@ Price updates instantly when quantity changes.
 
 Radio button group:
 
-| Finish |
-|--------|
-| Gold |
-| Silver |
+| Finish       |
+| ------------ |
+| Gold         |
+| Silver       |
 | Black Nickel |
-| Rose Gold |
+| Rose Gold    |
 
 Optional: Enamel type selector (Hard / Soft enamel).
 
@@ -121,7 +121,7 @@ Includes free digital proof.
 ## Add to Cart CTA
 
 - Large champagne button: **Add to Cart**
-- Below button: "Production time: 10–14 business days after proof approval"
+- Below button: "Delivery in 25 business days after proof approval"
 
 ## Trust & Risk Reversal Bar
 
@@ -143,19 +143,20 @@ Abbreviated 3-step flow to reduce anxiety:
 
 Concise, non-technical:
 
-| Spec | Value |
-|------|-------|
-| Material | Iron / zinc alloy |
-| Backing | Dual magnetic backing |
-| Finish | Premium plating |
-| Thickness | TBD mm |
-| Attachment | No needle puncture |
+| Spec       | Value                 |
+| ---------- | --------------------- |
+| Material   | Iron / zinc alloy     |
+| Backing    | Dual magnetic backing |
+| Finish     | Premium plating       |
+| Thickness  | TBD mm                |
+| Attachment | No needle puncture    |
 
 ## Magnet Strength Section
 
 **Title:** "How Strong Are The Magnets?"
 
 Content:
+
 - Close-up magnet image
 - Short plain-language explanation of hold strength
 - Clothing examples: blazer, coat, tote bag
@@ -205,14 +206,14 @@ Persistent bottom bar visible during scroll:
 
 All editable copy and data lives in `.constants.ts` files alongside each component:
 
-| What to edit | File |
-|---|---|
-| Configurator size options | `components/pdp/Configurator/Configurator.constants.ts` |
-| Pricing tiers | `constants/pricing.ts` (shared with homepage) |
-| Finish options | `components/pdp/Configurator/Configurator.constants.ts` |
-| Trust bar items | `components/pdp/TrustBar/TrustBar.constants.ts` |
-| Product specs | `components/pdp/ProductSpecs/ProductSpecs.constants.ts` |
-| Magnet strength content | `components/pdp/MagnetStrength/MagnetStrength.constants.ts` |
-| PDP FAQ items | `components/pdp/PDPFAQSection/PDPFAQSection.constants.ts` |
-| Artwork guidelines | `components/pdp/ArtworkGuidelines/ArtworkGuidelines.constants.ts` |
-| Final CTA copy | `components/pdp/PDPFinalCTA/PDPFinalCTA.constants.ts` |
+| What to edit              | File                                                              |
+| ------------------------- | ----------------------------------------------------------------- |
+| Configurator size options | `components/pdp/Configurator/Configurator.constants.ts`           |
+| Pricing tiers             | `constants/pricing.ts` (shared with homepage)                     |
+| Finish options            | `components/pdp/Configurator/Configurator.constants.ts`           |
+| Trust bar items           | `components/pdp/TrustBar/TrustBar.constants.ts`                   |
+| Product specs             | `components/pdp/ProductSpecs/ProductSpecs.constants.ts`           |
+| Magnet strength content   | `components/pdp/MagnetStrength/MagnetStrength.constants.ts`       |
+| PDP FAQ items             | `components/pdp/PDPFAQSection/PDPFAQSection.constants.ts`         |
+| Artwork guidelines        | `components/pdp/ArtworkGuidelines/ArtworkGuidelines.constants.ts` |
+| Final CTA copy            | `components/pdp/PDPFinalCTA/PDPFinalCTA.constants.ts`             |

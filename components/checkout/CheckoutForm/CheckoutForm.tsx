@@ -166,7 +166,7 @@ function FloatingField({
         autoComplete={autoComplete}
         inputMode={inputMode}
         disabled={disabled}
-        className={`w-full border-[1.5px] rounded-xl text-[15px] text-[#1e1e2e] outline-none h-[52px] transition-[border-color] duration-150 font-[inherit] appearance-none ${
+        className={`w-full border-[1.5px] rounded-xl text-[16px] text-[#1e1e2e] outline-none h-[52px] transition-[border-color] duration-150 font-[inherit] appearance-none placeholder:text-[16px] ${
           error ? "border-red-500" : "border-[#e5e7eb] focus:border-[#2A7A6F]"
         } ${disabled ? "bg-[#f9f9f9]" : "bg-white"}`}
         style={{ padding: hasValue ? "20px 14px 8px" : "14px 14px 14px" }}
@@ -175,7 +175,7 @@ function FloatingField({
         className={`absolute left-[14px] pointer-events-none transition-all duration-150 origin-left ${
           hasValue
             ? "top-1.5 scale-75 font-semibold text-[#2A7A6F]"
-            : "top-4 text-[15px] text-[#aaa]"
+            : "top-4 text-[16px] text-[#aaa]"
         } ${error ? "!text-red-500" : ""}`}
       >
         {label}
@@ -208,7 +208,7 @@ function FloatingSelect({
     <div className="relative mb-4">
       <select
         {...register(name)}
-        className={`w-full border-[1.5px] rounded-xl text-[15px] text-[#1e1e2e] outline-none h-[52px] transition-[border-color] duration-150 font-[inherit] cursor-pointer appearance-none bg-white ${
+        className={`w-full border-[1.5px] rounded-xl text-[16px] text-[#1e1e2e] outline-none h-[52px] transition-[border-color] duration-150 font-[inherit] cursor-pointer appearance-none bg-white ${
           error ? "border-red-500" : "border-[#e5e7eb] focus:border-[#2A7A6F]"
         }`}
         style={{
@@ -227,7 +227,7 @@ function FloatingSelect({
         className={`absolute left-[14px] pointer-events-none transition-all duration-150 origin-left ${
           hasValue
             ? "top-1.5 scale-75 font-semibold text-[#2A7A6F]"
-            : "top-4 text-[15px] text-[#aaa]"
+            : "top-4 text-[16px] text-[#aaa]"
         } ${error ? "!text-red-500" : ""}`}
       >
         {label}
@@ -582,7 +582,7 @@ export function CheckoutForm() {
               />
             )}
             <FloatingField
-              label="ZIP / Postal code"
+              label="ZIP / Postal"
               name="zip"
               autoComplete="postal-code"
               inputMode="numeric"
@@ -608,7 +608,7 @@ export function CheckoutForm() {
                   Standard Shipping
                 </div>
                 <div className="text-[11px] text-[#888] mt-px">
-                  10–14 business days after proof approval
+                  25 business days after proof approval
                 </div>
               </div>
             </div>
