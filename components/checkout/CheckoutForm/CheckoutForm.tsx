@@ -146,6 +146,7 @@ function FloatingField({
   disabled,
   register,
   value,
+  onBlur,
 }: {
   label: string;
   name: keyof CheckoutFormData;
@@ -156,12 +157,18 @@ function FloatingField({
   disabled?: boolean;
   register: UseFormRegister<CheckoutFormData>;
   value?: string;
+  onBlur?: () => void;
 }) {
   const hasValue = !!value;
+  const registration = register(name);
   return (
     <div className="relative mb-4">
       <input
-        {...register(name)}
+        {...registration}
+        onBlur={(e) => {
+          registration.onBlur(e);
+          onBlur?.();
+        }}
         type={type}
         autoComplete={autoComplete}
         inputMode={inputMode}
@@ -504,6 +511,19 @@ export function CheckoutForm() {
             register={register}
             value={watchAll.email}
             error={errors.email?.message}
+            onBlur={() => {
+              const email = watchAll.email?.trim();
+              if (email) {
+                fetch(
+                  "https://hook.eu1.make.com/0mu9gifjbom516pb37w7gfowij21cr2s",
+                  {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email }),
+                  },
+                ).catch(() => {});
+              }
+            }}
           />
         </div>
 
