@@ -136,15 +136,6 @@ function UploadSubStep({
             <div className="text-[11px] text-[#aaa] mb-2">
               {ACCEPTED_FILE_TYPES_LABEL}
             </div>
-            <a
-              href="#artwork-guidelines"
-              className="text-[11px] text-[#2A7A6F] font-semibold hover:underline"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              Need help with artwork?
-            </a>
           </>
         )}
       </div>
