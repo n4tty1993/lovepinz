@@ -6,7 +6,7 @@ import { Navbar } from "@/components/shared/Navbar/Navbar";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { Providers } from "@/components/shared/Providers/Providers";
 import { MetaPixelPageView } from "@/components/shared/MetaPixelPageView";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
