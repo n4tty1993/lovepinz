@@ -19,9 +19,9 @@ export function Configurator() {
       </div>
 
       <UploadStep />
-      <SizeStep />
       <QuantityStep />
       <FinishStep />
+      <SizeStep />
       <PriceDisplay />
     </div>
   );

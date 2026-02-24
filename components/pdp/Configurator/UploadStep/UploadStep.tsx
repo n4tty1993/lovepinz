@@ -378,19 +378,16 @@ export function UploadStep() {
     let cancelled = false;
     let prog = 0;
 
-    // Start fake progress animation
-    const tick = () => {
+    // Start fake progress animation — linear over 50 seconds (1% every 500ms, cap at 90%)
+    const interval = setInterval(() => {
       if (cancelled) return;
-      prog = Math.min(90, prog + Math.random() * 5 + 1);
+      prog = Math.min(90, prog + 1);
       dispatch({
         type: "SET_WIZARD_PROGRESS",
         progress: Math.round(prog),
       });
-      if (prog < 90) {
-        setTimeout(tick, 100 + Math.random() * 150);
-      }
-    };
-    setTimeout(tick, 250);
+      if (prog >= 90) clearInterval(interval);
+    }, 500);
 
     // Send image to Astria via API route
     const formData = new FormData();
@@ -422,6 +419,7 @@ export function UploadStep() {
 
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
   }, [state.wizardStep, state.file, dispatch]);
 
