@@ -126,6 +126,7 @@ export function HeroSection() {
               className="object-cover"
               placeholder="blur"
               priority
+              preload
             />
             <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#2A7A6F]/30 rounded-tr-2xl" />
             <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#2A7A6F]/30 rounded-bl-2xl" />
