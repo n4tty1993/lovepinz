@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Custom Magnetic Pins — No Holes. No Damage.",
   description:
     "Design and order custom enamel magnetic pins online. No holes, no fabric damage. Minimum 25 pieces. Free shipping across the USA.",
+  icons: {
+    icon: "/assets/logo_trans.png",
+  },
 };
 
 export default function RootLayout({
