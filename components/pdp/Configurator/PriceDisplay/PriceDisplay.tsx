@@ -4,19 +4,13 @@ import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
-import {
-  STYLE_OPTIONS,
-  SIZE_OPTIONS,
-  FINISH_OPTIONS,
-} from "../Configurator.constants";
+import { SIZE_OPTIONS, FINISH_OPTIONS } from "../Configurator.constants";
 
 export function PriceDisplay() {
   const router = useRouter();
   const { state, derived } = useConfigurator();
 
-  const styleName = state.selectedStyle
-    ? (STYLE_OPTIONS.find((o) => o.id === state.selectedStyle)?.label ?? "—")
-    : null;
+  const hasDesignSelected = state.selectedImageIndex !== null;
   const sizeDiameter =
     SIZE_OPTIONS.find((o) => o.value === state.size)?.diameter ??
     `${state.size}"`;
@@ -31,9 +25,9 @@ export function PriceDisplay() {
     green?: boolean;
   }[] = [
     {
-      label: "Design style",
-      value: styleName ?? "Not selected yet",
-      warn: !styleName,
+      label: "Design",
+      value: hasDesignSelected ? "Selected" : "Not selected yet",
+      warn: !hasDesignSelected,
     },
     { label: "Pin size", value: `${sizeDiameter} pin` },
     { label: "Finish", value: finishLabel },

@@ -2,11 +2,6 @@ import type { FAQItem } from "./PDPFAQSection.types";
 
 export const PDP_FAQ_ITEMS: FAQItem[] = [
   {
-    question: "What if my artwork isn't high quality?",
-    answer:
-      "No worries — our design team reviews every upload. If your file needs adjustments, we'll reach out with suggestions before creating your proof. We accept PNG, JPG, SVG, AI, and PDF files. For best results, upload a vector file or an image at 300 DPI or higher.",
-  },
-  {
     question: "Can I revise my proof?",
     answer:
       "Absolutely. You'll receive a free digital proof before we start production. You can request revisions until you're completely happy with the design. There's no limit on proof revisions.",

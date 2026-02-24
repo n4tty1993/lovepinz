@@ -21,9 +21,4 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Yes. We send every order a free digital proof before production begins. Nothing goes to manufacturing until you've reviewed and approved your proof.",
   },
-  {
-    question: "What if my artwork isn't good quality?",
-    answer:
-      "Our team reviews every file before proofing. If we spot any resolution or format issues, we'll reach out with guidance to ensure your pins look their best.",
-  },
 ];

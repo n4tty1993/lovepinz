@@ -18,21 +18,6 @@ export const ACCEPTED_FILE_TYPES = ".jpg,.jpeg,.png";
 export const ACCEPTED_FILE_TYPES_LABEL = "JPG, JPEG, PNG";
 export const MAX_FILE_SIZE_MB = 25;
 
-export const STYLE_OPTIONS = [
-  { id: "original" as const, label: "Original", filter: "none" },
-  {
-    id: "vivid" as const,
-    label: "Vivid",
-    filter: "saturate(2) contrast(1.15)",
-  },
-  { id: "noir" as const, label: "Noir", filter: "grayscale(1) contrast(1.3)" },
-  {
-    id: "warm" as const,
-    label: "Warm Glow",
-    filter: "sepia(0.5) saturate(1.4) brightness(1.05)",
-  },
-] as const;
-
 export const WIZARD_STEPS = [
   "upload",
   "processing",

@@ -15,7 +15,6 @@ export type PinFinish = "gold" | "silver" | "black-nickel" | "rose-gold";
 
 export type ProcessingPhase = "idle" | "uploading" | "processing" | "complete";
 export type WizardStep = "upload" | "processing" | "choose" | "result";
-export type StyleOption = "original" | "vivid" | "noir" | "warm";
 
 export interface ConfiguratorState {
   file: File | null;
@@ -23,7 +22,8 @@ export interface ConfiguratorState {
   processingPhase: ProcessingPhase;
   wizardStep: WizardStep;
   wizardProgress: number;
-  selectedStyle: StyleOption | null;
+  generatedImages: string[][];
+  selectedImageIndex: number | null;
   size: PinSize;
   quantity: number;
   finish: PinFinish;
@@ -35,7 +35,8 @@ export type ConfiguratorAction =
   | { type: "SET_PROCESSING_PHASE"; phase: ProcessingPhase }
   | { type: "SET_WIZARD_STEP"; step: WizardStep }
   | { type: "SET_WIZARD_PROGRESS"; progress: number }
-  | { type: "SET_SELECTED_STYLE"; style: StyleOption }
+  | { type: "SET_GENERATED_IMAGES"; images: string[][] }
+  | { type: "SET_SELECTED_IMAGE"; index: number }
   | { type: "WIZARD_START_PROCESSING" }
   | { type: "WIZARD_PROCESSING_DONE" }
   | { type: "WIZARD_CONFIRM_STYLE" }
@@ -55,7 +56,8 @@ const initialState: ConfiguratorState = {
   processingPhase: "idle",
   wizardStep: "upload",
   wizardProgress: 0,
-  selectedStyle: null,
+  generatedImages: [],
+  selectedImageIndex: null,
   size: "1",
   quantity: 25,
   finish: "gold",
@@ -80,7 +82,8 @@ function configuratorReducer(
         processingPhase: "idle",
         wizardStep: "upload",
         wizardProgress: 0,
-        selectedStyle: null,
+        generatedImages: [],
+        selectedImageIndex: null,
       };
     case "SET_PROCESSING_PHASE":
       return { ...state, processingPhase: action.phase };
@@ -88,8 +91,10 @@ function configuratorReducer(
       return { ...state, wizardStep: action.step };
     case "SET_WIZARD_PROGRESS":
       return { ...state, wizardProgress: action.progress };
-    case "SET_SELECTED_STYLE":
-      return { ...state, selectedStyle: action.style };
+    case "SET_GENERATED_IMAGES":
+      return { ...state, generatedImages: action.images };
+    case "SET_SELECTED_IMAGE":
+      return { ...state, selectedImageIndex: action.index };
     case "WIZARD_START_PROCESSING":
       return { ...state, wizardStep: "processing", wizardProgress: 0 };
     case "WIZARD_PROCESSING_DONE":
@@ -104,7 +109,8 @@ function configuratorReducer(
         processingPhase: "idle",
         wizardStep: "upload",
         wizardProgress: 0,
-        selectedStyle: null,
+        generatedImages: [],
+        selectedImageIndex: null,
       };
     case "SET_SIZE":
       return { ...state, size: action.size };

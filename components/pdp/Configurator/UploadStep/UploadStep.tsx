@@ -7,12 +7,10 @@ import {
   ACCEPTED_FILE_TYPES,
   ACCEPTED_FILE_TYPES_LABEL,
   MAX_FILE_SIZE_MB,
-  STYLE_OPTIONS,
   WIZARD_STEPS,
   WIZARD_STEP_LABELS,
   PROCESSING_LABELS,
 } from "../Configurator.constants";
-import type { StyleOption } from "@/contexts/ConfiguratorContext";
 import { trackUploadImage } from "@/lib/meta-pixel";
 
 function WizardStepper({ current }: { current: string }) {
@@ -115,7 +113,10 @@ function UploadSubStep({
           type="file"
           accept={ACCEPTED_FILE_TYPES}
           className="hidden"
-          onChange={(e) => validate(e.target.files?.[0])}
+          onChange={(e) => {
+            validate(e.target.files?.[0]);
+            e.target.value = "";
+          }}
         />
         {previewUrl ? (
           <Image
@@ -223,7 +224,7 @@ function ProcessingSubStep({
 
       <div className="mb-3.5">
         <div className="flex justify-between mb-1.5 text-xs font-semibold text-[#2A7A6F]">
-          <span>{progress < 100 ? "Analyzing..." : "Done!"}</span>
+          <span>{progress < 100 ? "Generating designs..." : "Done!"}</span>
           <span>{progress}%</span>
         </div>
         <div className="h-[7px] bg-[#edf5ea] rounded-full overflow-hidden">
@@ -257,42 +258,43 @@ function ProcessingSubStep({
 }
 
 function ChooseStyleSubStep({
-  previewUrl,
-  selectedStyle,
+  generatedImages,
+  selectedIndex,
   onSelect,
   onConfirm,
 }: {
-  previewUrl: string;
-  selectedStyle: StyleOption | null;
-  onSelect: (id: StyleOption) => void;
+  generatedImages: string[][];
+  selectedIndex: number | null;
+  onSelect: (index: number) => void;
   onConfirm: () => void;
 }) {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-1 duration-200">
       <p className="text-[13px] text-[#666] mb-3.5">
-        Pick a style for your pin design.
+        Pick a design for your pin.
       </p>
       <div className="grid grid-cols-2 gap-2.5 mb-3.5">
-        {STYLE_OPTIONS.map((opt) => {
-          const selected = selectedStyle === opt.id;
+        {generatedImages.map((images, i) => {
+          const selected = selectedIndex === i;
+          const src = images[0];
+          if (!src) return null;
           return (
             <div
-              key={opt.id}
+              key={i}
               className={`rounded-[14px] overflow-hidden cursor-pointer bg-[#f0f0f8] transition-all duration-200 border-[3px] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(42,122,111,0.19)] ${
                 selected
                   ? "border-[#2A7A6F] shadow-[0_0_0_4px_rgba(42,122,111,0.13)]"
                   : "border-transparent"
               }`}
-              onClick={() => onSelect(opt.id)}
+              onClick={() => onSelect(i)}
             >
               <Image
-                src={previewUrl}
-                alt={opt.label}
+                src={src}
+                alt={`Design option ${i + 1}`}
                 width={200}
                 height={200}
                 unoptimized
                 className="w-full aspect-square object-cover block"
-                style={{ filter: opt.filter }}
               />
               <div
                 className={`px-2.5 py-2 flex items-center justify-between ${
@@ -304,7 +306,7 @@ function ChooseStyleSubStep({
                     selected ? "text-[#2A7A6F]" : "text-[#333]"
                   }`}
                 >
-                  {opt.label}
+                  Option {i + 1}
                 </span>
                 {selected && (
                   <span className="w-4 h-4 rounded-full bg-[#2A7A6F] text-white flex items-center justify-center text-[9px] font-extrabold">
@@ -318,46 +320,38 @@ function ChooseStyleSubStep({
       </div>
       <button
         className="w-full bg-gradient-to-br from-[#2A7A6F] to-[#1e5c55] text-white border-none rounded-xl px-5 py-3 text-sm font-bold cursor-pointer shadow-[0_4px_14px_rgba(42,122,111,0.4)] hover:opacity-90 hover:-translate-y-px transition-all disabled:opacity-[0.38] disabled:cursor-not-allowed disabled:hover:translate-y-0"
-        disabled={!selectedStyle}
+        disabled={selectedIndex === null}
         onClick={onConfirm}
       >
-        Apply Style →
+        Select Design →
       </button>
     </div>
   );
 }
 
 function ResultSubStep({
-  previewUrl,
-  selectedStyle,
+  selectedImageUrl,
   onReset,
 }: {
-  previewUrl: string;
-  selectedStyle: StyleOption;
+  selectedImageUrl: string;
   onReset: () => void;
 }) {
-  const opt = STYLE_OPTIONS.find((o) => o.id === selectedStyle);
-
   return (
     <div className="animate-in fade-in slide-in-from-bottom-1 duration-200">
       <div className="flex gap-3 items-center bg-green-50 rounded-xl p-3 mb-3.5 border border-green-200">
         <div className="rounded-[10px] overflow-hidden shrink-0">
           <Image
-            src={previewUrl}
+            src={selectedImageUrl}
             alt="Final design"
             width={60}
             height={60}
             unoptimized
             className="w-[60px] h-[60px] object-cover block"
-            style={{ filter: opt?.filter }}
           />
         </div>
         <div className="flex-1">
           <div className="text-[13px] font-extrabold text-green-600">
             ✓ Design ready!
-          </div>
-          <div className="text-xs text-[#555] mt-0.5">
-            Style: <strong className="text-[#2A7A6F]">{opt?.label}</strong>
           </div>
         </div>
         <button
@@ -380,30 +374,56 @@ export function UploadStep() {
 
   useEffect(() => {
     if (state.wizardStep !== "processing") return;
+    if (!state.file) return;
     let cancelled = false;
     let prog = 0;
 
+    // Start fake progress animation
     const tick = () => {
       if (cancelled) return;
-      prog = Math.min(100, prog + Math.random() * 7 + 2);
+      prog = Math.min(90, prog + Math.random() * 5 + 1);
       dispatch({
         type: "SET_WIZARD_PROGRESS",
         progress: Math.round(prog),
       });
-      if (prog < 100) {
-        setTimeout(tick, 70 + Math.random() * 130);
-      } else {
+      if (prog < 90) {
+        setTimeout(tick, 100 + Math.random() * 150);
+      }
+    };
+    setTimeout(tick, 250);
+
+    // Send image to Astria via API route
+    const formData = new FormData();
+    formData.append("image", state.file);
+
+    fetch("/api/astria/tune", { method: "POST", body: formData })
+      .then((res) => res.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (data.error) {
+          console.error("Astria tune error:", data.error);
+        } else {
+          console.log("Astria images received:", data);
+          dispatch({ type: "SET_GENERATED_IMAGES", images: data.images });
+        }
+        dispatch({ type: "SET_WIZARD_PROGRESS", progress: 100 });
         setTimeout(() => {
           if (!cancelled) dispatch({ type: "WIZARD_PROCESSING_DONE" });
         }, 400);
-      }
-    };
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        console.error("Astria tune error:", err);
+        dispatch({ type: "SET_WIZARD_PROGRESS", progress: 100 });
+        setTimeout(() => {
+          if (!cancelled) dispatch({ type: "WIZARD_PROCESSING_DONE" });
+        }, 400);
+      });
 
-    setTimeout(tick, 250);
     return () => {
       cancelled = true;
     };
-  }, [state.wizardStep, dispatch]);
+  }, [state.wizardStep, state.file, dispatch]);
 
   const handleFile = useCallback(
     (file: File, url: string) => {
@@ -417,6 +437,10 @@ export function UploadStep() {
     },
     [dispatch],
   );
+
+  const selectedImageUrl =
+    state.selectedImageIndex !== null &&
+    state.generatedImages[state.selectedImageIndex]?.[0];
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
@@ -451,24 +475,21 @@ export function UploadStep() {
         />
       )}
 
-      {state.wizardStep === "choose" && state.previewUrl && (
+      {state.wizardStep === "choose" && state.generatedImages.length > 0 && (
         <ChooseStyleSubStep
-          previewUrl={state.previewUrl}
-          selectedStyle={state.selectedStyle}
-          onSelect={(id) => dispatch({ type: "SET_SELECTED_STYLE", style: id })}
+          generatedImages={state.generatedImages}
+          selectedIndex={state.selectedImageIndex}
+          onSelect={(index) => dispatch({ type: "SET_SELECTED_IMAGE", index })}
           onConfirm={() => dispatch({ type: "WIZARD_CONFIRM_STYLE" })}
         />
       )}
 
-      {state.wizardStep === "result" &&
-        state.previewUrl &&
-        state.selectedStyle && (
-          <ResultSubStep
-            previewUrl={state.previewUrl}
-            selectedStyle={state.selectedStyle}
-            onReset={() => dispatch({ type: "WIZARD_RESET" })}
-          />
-        )}
+      {state.wizardStep === "result" && selectedImageUrl && (
+        <ResultSubStep
+          selectedImageUrl={selectedImageUrl}
+          onReset={() => dispatch({ type: "WIZARD_RESET" })}
+        />
+      )}
     </div>
   );
 }
