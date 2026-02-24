@@ -54,10 +54,4 @@ export const CAROUSEL_SLIDES: CarouselSlide[] = [
     alt: "Custom magnetic pin – collection",
     accent: "#a8d8a8",
   },
-  {
-    id: 9,
-    src: "/assets/pdp/9.webp",
-    alt: "Custom magnetic pin – worn on jacket",
-    accent: "#b2d8d4",
-  },
 ];
