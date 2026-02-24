@@ -409,7 +409,7 @@ function SorryModal({
           {[
             ["📬", "We'll email you as soon as shipping opens to your region"],
             ["🎁", "You'll get early access and an exclusive discount"],
-            ["💬", "Feel free to reach us at hello@magpinstudio.com"],
+            ["💬", "Feel free to reach us at team@lovepinz.com"],
           ].map(([icon, text]) => (
             <div
               key={text}

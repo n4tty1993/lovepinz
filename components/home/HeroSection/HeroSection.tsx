@@ -1,8 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
+import heroImg from "@/public/assets/home-page/hero.webp";
 import { TRUST_ITEMS } from "@/components/home/TrustStrip/TrustStrip.constants";
 import {
   EASE_EXPO_OUT,
@@ -37,7 +44,6 @@ export function HeroSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
-
         {/* Text stagger container */}
         <motion.div
           className="flex flex-col gap-8"
@@ -72,7 +78,9 @@ export function HeroSection() {
             className="text-lg text-[#7A6458] max-w-lg leading-relaxed"
           >
             Custom enamel pins with strong magnetic backing.{" "}
-            <span className="text-[#2C1A0E] font-semibold">No holes. No fabric damage.</span>{" "}
+            <span className="text-[#2C1A0E] font-semibold">
+              No holes. No fabric damage.
+            </span>{" "}
             Minimum 25 pieces.
           </motion.p>
 
@@ -108,24 +116,21 @@ export function HeroSection() {
         </motion.div>
 
         {/* Product image — delayed entrance + scroll parallax (drifts up slower than text) */}
-        <motion.div
-          className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40"
-          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-          animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-          transition={shouldReduceMotion ? undefined : { duration: 0.8, ease: EASE_EXPO_OUT, delay: 0.5 }}
-          style={shouldReduceMotion ? undefined : { y: imgY }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#FFF0E8] via-[#FFE4CC] to-[#FFDAB0] flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-white/70 border border-[#2A7A6F]/30 flex items-center justify-center mx-auto mb-4 shadow-md">
-                <span className="text-3xl">📌</span>
-              </div>
-              <p className="text-[#7A6458] text-sm">Lifestyle photo here</p>
-            </div>
+        <Link href="/product" className="block">
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40">
+            <Image
+              src={heroImg}
+              alt="Custom magnetic enamel pins"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              placeholder="blur"
+              priority
+            />
+            <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#2A7A6F]/30 rounded-tr-2xl" />
+            <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#2A7A6F]/30 rounded-bl-2xl" />
           </div>
-          <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#2A7A6F]/30 rounded-tr-2xl" />
-          <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#2A7A6F]/30 rounded-bl-2xl" />
-        </motion.div>
+        </Link>
       </div>
     </section>
   );

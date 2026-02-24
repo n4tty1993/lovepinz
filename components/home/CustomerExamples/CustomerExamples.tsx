@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { EXAMPLES } from "./CustomerExamples.constants";
 import {
@@ -14,7 +15,6 @@ export function CustomerExamples() {
   return (
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
-
         <motion.div
           className="text-center mb-16"
           variants={shouldReduceMotion ? undefined : fadeUpVariants}
@@ -44,21 +44,27 @@ export function CustomerExamples() {
             <motion.div
               key={i}
               variants={shouldReduceMotion ? undefined : fadeUpVariants}
-              whileHover={shouldReduceMotion ? undefined : { y: -10, scale: 1.03 }}
+              whileHover={
+                shouldReduceMotion ? undefined : { y: -10, scale: 1.03 }
+              }
               transition={HOVER_SPRING}
-              className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-sm shadow-teal-100/40 border border-[#2A7A6F]/15"
+              className={`group cursor-pointer rounded-2xl overflow-hidden ${ex.bg} shadow-sm shadow-teal-100/40 border border-[#2A7A6F]/15`}
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${ex.gradient} transition-transform duration-300 group-hover:scale-[1.03]`}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/60 flex items-center justify-center shadow-sm">
-                  <span className="text-2xl">📌</span>
-                </div>
+              <div className="relative aspect-square overflow-hidden">
+                <Image
+                  src={ex.image}
+                  alt={ex.label}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  placeholder="blur"
+                />
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#2C1A0E]/30 to-transparent">
-                <p className="text-[#2C1A0E] font-semibold text-sm">{ex.label}</p>
-                <p className="text-[#2C1A0E]/60 text-xs">{ex.category}</p>
+              <div className="px-4 py-3">
+                <p className="text-[#2C1A0E] font-semibold text-sm">
+                  {ex.label}
+                </p>
+                <p className="text-[#7A6458] text-xs">{ex.category}</p>
               </div>
             </motion.div>
           ))}

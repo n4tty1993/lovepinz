@@ -5,7 +5,7 @@ import { TrustBar } from "@/components/pdp/TrustBar/TrustBar";
 import { HowItWorksMini } from "@/components/pdp/HowItWorksMini/HowItWorksMini";
 import { ProductSpecs } from "@/components/pdp/ProductSpecs/ProductSpecs";
 import { MagnetStrength } from "@/components/pdp/MagnetStrength/MagnetStrength";
-import { CustomerShowcase } from "@/components/pdp/CustomerShowcase/CustomerShowcase";
+import { CustomerExamples } from "@/components/home/CustomerExamples/CustomerExamples";
 import { PDPFAQSection } from "@/components/pdp/PDPFAQSection/PDPFAQSection";
 import { ArtworkGuidelines } from "@/components/pdp/ArtworkGuidelines/ArtworkGuidelines";
 import { PDPFinalCTA } from "@/components/pdp/PDPFinalCTA/PDPFinalCTA";
@@ -25,7 +25,7 @@ export default function ProductPage() {
       <HowItWorksMini />
       <ProductSpecs />
       <MagnetStrength />
-      <CustomerShowcase />
+      <CustomerExamples />
       <PDPFAQSection />
       <ArtworkGuidelines />
       <PDPFinalCTA />
