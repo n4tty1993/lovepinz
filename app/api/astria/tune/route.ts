@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     const tune = await createTuneFromPack({
       packId: PACK_ID,
       title: uuidv4(),
-      name: "person couple",
+      name: "image",
       image_urls: [imageUrl],
     });
 
