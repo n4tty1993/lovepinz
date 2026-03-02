@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
-import { SIZE_OPTIONS, FINISH_OPTIONS } from "../Configurator.constants";
+import {
+  SIZE_OPTIONS,
+  FINISH_OPTIONS,
+  COUPON_CODE,
+} from "../Configurator.constants";
 
 export function PriceDisplay() {
   const router = useRouter();
@@ -40,6 +44,8 @@ export function PriceDisplay() {
     { label: "Delivery", value: "25 business days" },
     { label: "Shipping", value: "FREE", green: true },
   ];
+
+  const hasCoupon = state.hasCoupon;
 
   return (
     <div>
@@ -77,14 +83,24 @@ export function PriceDisplay() {
           ))}
         </div>
 
-        {/* Total */}
+        {/* Coupon + Total */}
         <div className="bg-white border-t-[1.5px] border-[#b2d8d4]">
+          {hasCoupon && (
+            <div className="flex items-center justify-between px-[18px] py-[11px] border-b border-[#f3f4f6] bg-[#fffbeb]">
+              <span className="text-[13px] text-[#a16207] flex items-center gap-1.5">
+                🎟️ Coupon <strong>{COUPON_CODE}</strong>
+              </span>
+              <span className="text-[13px] font-bold text-green-600">
+                −{formatPrice(derived.couponDiscount)}
+              </span>
+            </div>
+          )}
           <div className="flex items-center justify-between px-[18px] py-3.5">
             <span className="text-[15px] font-extrabold text-[#2A7A6F]">
               Total
             </span>
             <span className="text-[22px] font-black text-[#2A7A6F] tracking-tight">
-              {formatPrice(derived.totalPrice)}
+              {formatPrice(derived.finalPrice)}
             </span>
           </div>
 
@@ -106,7 +122,7 @@ export function PriceDisplay() {
             contentName: "Custom Magnetic Pin",
             contentIds: ["custom-magnetic-pin"],
             contentType: "product",
-            value: derived.totalPrice,
+            value: derived.finalPrice,
             currency: "USD",
             quantity: state.quantity,
           });

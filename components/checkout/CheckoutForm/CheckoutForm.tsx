@@ -9,6 +9,7 @@ import { trackPurchase } from "@/lib/meta-pixel";
 import {
   SIZE_OPTIONS,
   FINISH_OPTIONS,
+  COUPON_CODE,
 } from "@/components/pdp/Configurator/Configurator.constants";
 import {
   COUNTRIES,
@@ -69,16 +70,13 @@ function OrderSummary() {
           <span className="text-xs text-[#aaa]">{open ? "▲" : "▼"}</span>
         </div>
         <span className="text-base font-black text-[#1e1e2e]">
-          {formatPrice(derived.totalPrice)}
+          {formatPrice(derived.finalPrice)}
         </span>
       </button>
 
       {open && (
         <div className="border-t border-[#f0f0f0] px-[18px] py-3.5">
           <div className="flex gap-3.5 items-start mb-3.5">
-            <div className="w-[52px] h-[52px] rounded-[10px] bg-[#edf5ea] flex items-center justify-center text-2xl shrink-0">
-              📌
-            </div>
             <div className="flex-1">
               <div className="font-bold text-sm">Custom Magnetic Pin</div>
               <div className="text-xs text-[#888] mt-0.5">
@@ -86,31 +84,48 @@ function OrderSummary() {
               </div>
             </div>
             <div className="font-extrabold text-[15px]">
-              {formatPrice(derived.totalPrice)}
+              {formatPrice(derived.finalPrice)}
             </div>
           </div>
 
           {[
-            ["Subtotal", formatPrice(derived.totalPrice)],
-            ["Shipping", "FREE"],
-            ["Total", formatPrice(derived.totalPrice)],
-          ].map(([label, value], i) => (
+            ["Subtotal", formatPrice(derived.totalPrice), "normal"] as const,
+            ...(state.hasCoupon
+              ? [
+                  [
+                    "🎟️ Coupon {COUPON_CODE}",
+                    `−${formatPrice(derived.couponDiscount)}`,
+                    "coupon",
+                  ] as const,
+                ]
+              : []),
+            ["Shipping", "FREE", "green"] as const,
+            ["Total", formatPrice(derived.finalPrice), "total"] as const,
+          ].map(([label, value, kind]) => (
             <div
               key={label}
-              className="flex justify-between py-2 border-t border-[#f5f5f5]"
+              className={`flex justify-between py-2 border-t border-[#f5f5f5] ${kind === "coupon" ? "bg-[#fffbeb]" : ""}`}
             >
               <span
-                className={`text-[13px] ${i === 2 ? "text-[#1e1e2e] font-extrabold" : "text-[#777]"}`}
+                className={`text-[13px] ${
+                  kind === "total"
+                    ? "text-[#1e1e2e] font-extrabold"
+                    : kind === "coupon"
+                      ? "text-[#a16207] font-semibold"
+                      : "text-[#777]"
+                }`}
               >
                 {label}
               </span>
               <span
                 className={`text-[13px] ${
-                  i === 2
+                  kind === "total"
                     ? "font-black text-[#2A7A6F]"
-                    : i === 1
+                    : kind === "green"
                       ? "font-semibold text-green-600"
-                      : "font-semibold text-[#1e1e2e]"
+                      : kind === "coupon"
+                        ? "font-bold text-green-600"
+                        : "font-semibold text-[#1e1e2e]"
                 }`}
               >
                 {value}
@@ -364,7 +379,7 @@ function ReviewPanel() {
           </div>
           <div className="text-xs text-[#888]">
             {sizeDiameter} · {finishLabel} · {state.quantity} pcs ·{" "}
-            {formatPrice(derived.totalPrice)}
+            {formatPrice(derived.finalPrice)}
           </div>
         </div>
       </div>
@@ -373,7 +388,7 @@ function ReviewPanel() {
         disabled
         className="w-full py-4 bg-[#f0bf60] text-[#1e1e2e] border-none rounded-[14px] text-base font-extrabold opacity-30 cursor-not-allowed font-[inherit]"
       >
-        Place Order — {formatPrice(derived.totalPrice)}
+        Place Order — {formatPrice(derived.finalPrice)}
       </button>
     </DisabledPanel>
   );
@@ -455,7 +470,7 @@ export function CheckoutForm() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      email: "",
+      email: state.email ?? "",
       phone: "",
       address1: "",
       address2: "",
@@ -475,7 +490,7 @@ export function CheckoutForm() {
     trackPurchase({
       contentIds: ["custom-magnetic-pin"],
       contentType: "product",
-      value: derived.totalPrice,
+      value: derived.finalPrice,
       currency: "USD",
       numItems: state.quantity,
     });

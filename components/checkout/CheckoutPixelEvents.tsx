@@ -14,7 +14,7 @@ export function CheckoutPixelEvents() {
     trackInitiateCheckout({
       contentIds: ["custom-magnetic-pin"],
       contentType: "product",
-      value: derived.totalPrice,
+      value: derived.finalPrice,
       currency: "USD",
       numItems: state.quantity,
     });

@@ -31,6 +31,15 @@ export const WIZARD_STEP_LABELS: Record<string, string> = {
   result: "Done",
 };
 
+/** Steps that visually map to the "upload" stepper position */
+export const UPLOAD_ALIAS_STEPS = ["email", "coupon"] as const;
+
+export const COUPON_CODE = "WELCOME5";
+export const COUPON_DISCOUNT_RATE = 0.05;
+
+export const WEBHOOK_EMAIL_PDP =
+  "https://hook.eu1.make.com/w7eg84sfgwq051xwdofhmqpwbjmu9gj8";
+
 export const PROCESSING_LABELS = [
   "Noise reduction",
   "Color mapping",

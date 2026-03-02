@@ -22,7 +22,7 @@ export function StickyBar() {
         <div>
           <p className="text-xs text-[#7A6458]">{state.quantity} pins</p>
           <p className="text-lg font-bold text-[#2C1A0E]">
-            {formatPrice(derived.totalPrice)}
+            {formatPrice(derived.finalPrice)}
           </p>
         </div>
         <button
@@ -32,7 +32,7 @@ export function StickyBar() {
               contentName: "Custom Magnetic Pin",
               contentIds: ["custom-magnetic-pin"],
               contentType: "product",
-              value: derived.totalPrice,
+              value: derived.finalPrice,
               currency: "USD",
               quantity: state.quantity,
             });
