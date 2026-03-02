@@ -4,6 +4,12 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   ACCEPTED_FILE_TYPES,
   ACCEPTED_FILE_TYPES_LABEL,
   MAX_FILE_SIZE_MB,
@@ -191,17 +197,59 @@ function UploadSubStep({
   );
 }
 
+function CouponCard() {
+  const [copied, setCopied] = useState(false);
+
+  const copy = () => {
+    navigator.clipboard.writeText(COUPON_CODE).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
+  return (
+    <div className="bg-[#fffbeb] border-[1.5px] border-dashed border-[#fbbf24] rounded-xl px-4 py-3.5 text-center mb-4">
+      <div className="text-[11px] font-bold text-[#a16207] mb-2 tracking-wide">
+        🎉 YOUR COUPON HAS BEEN APPLIED
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="flex-1 text-center">
+          <div className="font-black text-xl tracking-[3px] text-[#1e1e2e]">
+            {COUPON_CODE}
+          </div>
+          <div className="text-[10px] text-[#a16207] mt-0.5">
+            ⏱ Valid for 24 hours · First order only
+          </div>
+        </div>
+        <button
+          onClick={copy}
+          className="shrink-0 border-none rounded-lg px-4 py-2.5 font-extrabold text-xs cursor-pointer transition-colors whitespace-nowrap shadow-[0_4px_12px_rgba(240,192,96,0.3)]"
+          style={{
+            background: copied ? "#22c55e" : "#F0C060",
+            color: copied ? "#fff" : "#1e1e2e",
+          }}
+        >
+          {copied ? "✓ Copied!" : "Copy"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function ProcessingSubStep({
   previewUrl,
   progress,
+  hasCoupon,
 }: {
   previewUrl: string;
   progress: number;
+  hasCoupon: boolean;
 }) {
   const blur = Math.max(0, 12 - (progress / 100) * 12);
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-1 duration-200 text-center">
+      {hasCoupon && <CouponCard />}
+
       <div className="relative inline-block rounded-[14px] overflow-hidden mb-4">
         <Image
           src={previewUrl}
@@ -283,17 +331,17 @@ function ZoomModal({
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
       else if (e.key === "ArrowRight") next();
-      else if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [prev, next, onClose]);
+  }, [prev, next]);
 
   const onPointerDown = (e: React.PointerEvent) => setDragStart(e.clientX);
   const onPointerUp = (e: React.PointerEvent) => {
     if (dragStart === null) return;
     const d = e.clientX - dragStart;
     if (Math.abs(d) > 40) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       d < 0 ? next() : prev();
     }
     setDragStart(null);
@@ -302,63 +350,29 @@ function ZoomModal({
   if (!src) return null;
 
   return (
-    <div
-      onClick={onClose}
-      className="fixed inset-0 z-[999] flex flex-col items-center justify-center p-5 cursor-zoom-out"
-      style={{
-        background: "rgba(0,0,0,0.88)",
-        backdropFilter: "blur(8px)",
-      }}
-    >
-      <div
-        className="relative w-full max-w-[420px] cursor-default animate-in zoom-in-95 duration-200"
-        onClick={(e) => e.stopPropagation()}
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogOverlay className="bg-black/88 backdrop-blur-lg" />
+      <DialogContent
+        showCloseButton={false}
+        className="bg-transparent ring-0 shadow-none max-w-[420px] p-0 gap-0"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
       >
-        {/* Main image */}
-        <Image
-          key={idx}
-          src={src}
-          alt={`Design option ${idx + 1}`}
-          width={420}
-          height={420}
-          unoptimized
-          className="w-full aspect-square object-contain rounded-[18px] block animate-in zoom-in-95 duration-200"
-          style={{ boxShadow: "0 24px 80px rgba(0,0,0,0.7)" }}
-        />
+        <DialogTitle className="sr-only">Design option {idx + 1}</DialogTitle>
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-white border-none cursor-pointer font-black text-base flex items-center justify-center z-[2]"
-          style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
-        >
-          ×
-        </button>
-
-        {/* Arrow buttons */}
-        {total > 1 && (
-          <>
-            {[
-              { arrow: "←", side: "left" as const, action: prev },
-              { arrow: "→", side: "right" as const, action: next },
-            ].map(({ arrow, side, action }) => (
-              <button
-                key={side}
-                onClick={action}
-                className="absolute top-1/2 -translate-y-1/2 w-[38px] h-[38px] rounded-full border border-white/25 text-white text-base cursor-pointer flex items-center justify-center font-bold transition-colors hover:bg-white/[0.28]"
-                style={{
-                  [side]: "-20px",
-                  background: "rgba(255,255,255,0.15)",
-                  backdropFilter: "blur(6px)",
-                }}
-              >
-                {arrow}
-              </button>
-            ))}
-          </>
-        )}
+        <div className="relative">
+          {/* Main image */}
+          <Image
+            key={idx}
+            src={src}
+            alt={`Design option ${idx + 1}`}
+            width={420}
+            height={420}
+            unoptimized
+            className="w-full aspect-square object-contain rounded-[18px] block animate-in zoom-in-95 duration-200"
+            style={{ boxShadow: "0 24px 80px rgba(0,0,0,0.7)" }}
+          />
+        </div>
 
         {/* Label */}
         <div className="text-center mt-3.5 text-white font-extrabold text-[15px]">
@@ -428,8 +442,8 @@ function ZoomModal({
         <div className="text-center mt-2.5 text-white/[0.35] text-[11px]">
           ← → keys or swipe · Esc to close
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -690,103 +704,6 @@ function EmailSubStep({
   );
 }
 
-function CouponSubStep({ onDone }: { onDone: () => void }) {
-  const [progress, setProgress] = useState(0);
-  const [copied, setCopied] = useState(false);
-  const onDoneRef = useRef(onDone);
-  useEffect(() => {
-    onDoneRef.current = onDone;
-  }, [onDone]);
-
-  const copy = () => {
-    navigator.clipboard.writeText(COUPON_CODE).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
-  };
-
-  useEffect(() => {
-    let cancelled = false;
-    let prog = 0;
-    const tick = () => {
-      if (cancelled) return;
-      prog = Math.min(100, prog + Math.random() * 7 + 2);
-      setProgress(Math.round(prog));
-      if (prog < 100) setTimeout(tick, 70 + Math.random() * 130);
-      else
-        setTimeout(() => {
-          if (!cancelled) onDoneRef.current();
-        }, 400);
-    };
-    setTimeout(tick, 250);
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  return (
-    <div className="animate-in fade-in slide-in-from-bottom-1 duration-200">
-      {/* Progress bar */}
-      <div className="mb-3.5">
-        <div className="flex justify-between mb-1.5 text-xs font-semibold text-[#2A7A6F]">
-          <span>{progress < 100 ? "Analyzing…" : "Done!"}</span>
-          <span>{progress}%</span>
-        </div>
-        <div className="h-[7px] bg-[#edf5ea] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-[#2A7A6F] to-[#b2d8d4] rounded-full transition-[width] duration-150"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-      <div className="flex gap-1.5 justify-center flex-wrap mb-4">
-        {PROCESSING_LABELS.map((label, i) => {
-          const done = progress >= (i + 1) * 25;
-          return (
-            <div
-              key={label}
-              className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full transition-all duration-300 ${
-                done
-                  ? "bg-[#edf5ea] text-[#2A7A6F]"
-                  : "bg-[#f3f4f6] text-[#ccc]"
-              }`}
-            >
-              {done ? "✓ " : ""}
-              {label}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Coupon card */}
-      <div className="bg-[#fffbeb] border-[1.5px] border-dashed border-[#fbbf24] rounded-xl px-4 py-3.5 text-center">
-        <div className="text-[11px] font-bold text-[#a16207] mb-2 tracking-wide">
-          🎉 YOUR COUPON HAS BEEN APPLIED
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="flex-1 text-center">
-            <div className="font-black text-xl tracking-[3px] text-[#1e1e2e]">
-              {COUPON_CODE}
-            </div>
-            <div className="text-[10px] text-[#a16207] mt-0.5">
-              ⏱ Valid for 24 hours · First order only
-            </div>
-          </div>
-          <button
-            onClick={copy}
-            className="shrink-0 border-none rounded-lg px-4 py-2.5 font-extrabold text-xs cursor-pointer transition-colors whitespace-nowrap shadow-[0_4px_12px_rgba(240,192,96,0.3)]"
-            style={{
-              background: copied ? "#22c55e" : "#F0C060",
-              color: copied ? "#fff" : "#1e1e2e",
-            }}
-          >
-            {copied ? "✓ Copied!" : "Copy"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function UploadStep() {
   const { state, derived, dispatch } = useConfigurator();
   const [error, setError] = useState<string | null>(null);
@@ -892,16 +809,11 @@ export function UploadStep() {
         />
       )}
 
-      {state.wizardStep === "coupon" && (
-        <CouponSubStep
-          onDone={() => dispatch({ type: "WIZARD_COUPON_DONE" })}
-        />
-      )}
-
       {state.wizardStep === "processing" && state.previewUrl && (
         <ProcessingSubStep
           previewUrl={state.previewUrl}
           progress={state.wizardProgress}
+          hasCoupon={state.hasCoupon}
         />
       )}
 

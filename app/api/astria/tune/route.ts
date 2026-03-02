@@ -9,7 +9,22 @@ import {
 const PACK_ID = 4287;
 const S3_BUCKET = "timetotale-qa";
 
+const MOCK_RESPONSE = {
+  tuneId: 4210309,
+  images: [
+    ["https://mp.astria.ai/i5l60lskzp9q8o68p6wef1hbyjkl"],
+    ["https://mp.astria.ai/e5frszmg971zfrwl0k8erms5zfep"],
+    ["https://mp.astria.ai/0tq6e27y76logt55cjdq9tm2i6b1"],
+  ],
+};
+
 export async function POST(request: Request) {
+  if (process.env.NODE_ENV !== "production") {
+    // Simulate network delay
+    await new Promise((r) => setTimeout(r, 2000));
+    return NextResponse.json(MOCK_RESPONSE);
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("image") as File | null;

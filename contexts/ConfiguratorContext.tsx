@@ -18,7 +18,6 @@ export type ProcessingPhase = "idle" | "uploading" | "processing" | "complete";
 export type WizardStep =
   | "upload"
   | "email"
-  | "coupon"
   | "processing"
   | "choose"
   | "result";
@@ -49,7 +48,6 @@ export type ConfiguratorAction =
   | { type: "WIZARD_START_EMAIL" }
   | { type: "WIZARD_SUBMIT_EMAIL"; email: string }
   | { type: "WIZARD_SKIP_EMAIL" }
-  | { type: "WIZARD_COUPON_DONE" }
   | { type: "WIZARD_START_PROCESSING" }
   | { type: "WIZARD_PROCESSING_DONE" }
   | { type: "WIZARD_CONFIRM_STYLE" }
@@ -117,16 +115,15 @@ function configuratorReducer(
     case "WIZARD_START_EMAIL":
       return { ...state, wizardStep: "email" };
     case "WIZARD_SUBMIT_EMAIL":
-      return { ...state, email: action.email, wizardStep: "coupon" };
-    case "WIZARD_SKIP_EMAIL":
-      return { ...state, wizardStep: "processing", wizardProgress: 0 };
-    case "WIZARD_COUPON_DONE":
       return {
         ...state,
+        email: action.email,
         hasCoupon: true,
         wizardStep: "processing",
         wizardProgress: 0,
       };
+    case "WIZARD_SKIP_EMAIL":
+      return { ...state, wizardStep: "processing", wizardProgress: 0 };
     case "WIZARD_START_PROCESSING":
       return { ...state, wizardStep: "processing", wizardProgress: 0 };
     case "WIZARD_PROCESSING_DONE":
