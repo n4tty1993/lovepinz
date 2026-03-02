@@ -93,7 +93,7 @@ function OrderSummary() {
             ...(state.hasCoupon
               ? [
                   [
-                    "🎟️ Coupon {COUPON_CODE}",
+                    `🎟️ Coupon ${COUPON_CODE}`,
                     `−${formatPrice(derived.couponDiscount)}`,
                     "coupon",
                   ] as const,
