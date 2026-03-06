@@ -637,7 +637,7 @@ function EmailSubStep({
     fetch(WEBHOOK_EMAIL_PDP, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, source: "pdp" }),
     }).catch(() => {});
 
     timerRef.current = setTimeout(() => onSubmit(email), 800);

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
+import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
 import {
   SIZE_OPTIONS,
   FINISH_OPTIONS,
@@ -125,6 +126,17 @@ export function PriceDisplay() {
             value: derived.finalPrice,
             currency: "USD",
             quantity: state.quantity,
+          });
+          sendAddToCartWebhook({
+            quantity: state.quantity,
+            size: state.size,
+            finish: state.finish,
+            unitPrice: derived.unitPrice,
+            totalPrice: derived.totalPrice,
+            finalPrice: derived.finalPrice,
+            couponDiscount: derived.couponDiscount,
+            hasCoupon: state.hasCoupon,
+            email: state.email,
           });
           router.push("/checkout");
         }}

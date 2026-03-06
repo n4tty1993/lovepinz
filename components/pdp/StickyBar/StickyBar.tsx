@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
+import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
 
 export function StickyBar() {
   const router = useRouter();
@@ -35,6 +36,17 @@ export function StickyBar() {
               value: derived.finalPrice,
               currency: "USD",
               quantity: state.quantity,
+            });
+            sendAddToCartWebhook({
+              quantity: state.quantity,
+              size: state.size,
+              finish: state.finish,
+              unitPrice: derived.unitPrice,
+              totalPrice: derived.totalPrice,
+              finalPrice: derived.finalPrice,
+              couponDiscount: derived.couponDiscount,
+              hasCoupon: state.hasCoupon,
+              email: state.email,
             });
             router.push("/checkout");
           }}
