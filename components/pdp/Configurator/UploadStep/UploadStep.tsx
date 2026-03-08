@@ -18,8 +18,6 @@ import {
   UPLOAD_ALIAS_STEPS,
   PROCESSING_LABELS,
   COUPON_CODE,
-  COUPON_DISCOUNT_RATE,
-  WEBHOOK_EMAIL_PDP,
 } from "../Configurator.constants";
 import { trackUploadImage } from "@/lib/meta-pixel";
 
@@ -499,29 +497,24 @@ function ChooseStyleSubStep({
                 className="w-full aspect-square object-cover block"
               />
               <div
-                className={`px-2.5 py-2 flex items-center justify-between ${
+                className={`px-2.5 py-2 flex items-center justify-between gap-1 ${
                   selected ? "bg-[#edf5ea]" : "bg-[#fafafa]"
                 }`}
               >
                 <span
-                  className={`font-bold text-xs ${
+                  className={`font-bold text-xs whitespace-nowrap ${
                     selected ? "text-[#2A7A6F]" : "text-[#333]"
                   }`}
                 >
                   Option {i + 1}
                 </span>
-                <div className="flex items-center gap-1.5">
-                  {selected && (
-                    <span className="w-4 h-4 rounded-full bg-[#2A7A6F] text-white flex items-center justify-center text-[9px] font-extrabold">
-                      ✓
-                    </span>
-                  )}
+                <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setZoomedIndex(i);
                     }}
-                    className="bg-transparent border-none cursor-pointer p-0 text-[11px] text-[#2A7A6F] font-bold underline leading-none"
+                    className="bg-transparent border-none cursor-pointer p-0 text-[11px] text-[#2A7A6F] font-bold underline leading-none whitespace-nowrap"
                   >
                     Zoom In
                   </button>
@@ -536,19 +529,13 @@ function ChooseStyleSubStep({
         disabled={selectedIndex === null}
         onClick={onConfirm}
       >
-        Select Design →
+        Continue
       </button>
     </div>
   );
 }
 
-function ResultSubStep({
-  selectedImageUrl,
-  onReset,
-}: {
-  selectedImageUrl: string;
-  onReset: () => void;
-}) {
+function ResultSubStep({ selectedImageUrl }: { selectedImageUrl: string }) {
   const [zoomed, setZoomed] = useState(false);
 
   return (
@@ -583,12 +570,6 @@ function ResultSubStep({
         </div>
         <div className="flex flex-col items-end gap-2 shrink-0">
           <button
-            className="bg-transparent border-2 border-[#e5e7eb] rounded-xl px-3 py-1.5 text-[11px] font-semibold text-[#555] hover:border-[#2A7A6F] hover:text-[#2A7A6F] transition-colors cursor-pointer"
-            onClick={onReset}
-          >
-            Change
-          </button>
-          <button
             onClick={() => setZoomed(true)}
             className="bg-transparent border-none p-0 text-[11px] text-[#2A7A6F] font-bold cursor-pointer underline"
           >
@@ -596,110 +577,7 @@ function ResultSubStep({
           </button>
         </div>
       </div>
-      <div className="text-xs text-[#888] text-center">
-        Your design is set. Continue to choose size, quantity & finish below.
-      </div>
-    </div>
-  );
-}
-
-function EmailSubStep({
-  onSubmit,
-  onSkip,
-}: {
-  onSubmit: (email: string) => void;
-  onSkip: () => void;
-}) {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const validate = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  const handleSubmit = () => {
-    if (!email.trim()) {
-      onSkip();
-      return;
-    }
-    if (!validate()) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-    setError("");
-    setLoading(true);
-
-    fetch(WEBHOOK_EMAIL_PDP, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, source: "pdp" }),
-    }).catch(() => {});
-
-    timerRef.current = setTimeout(() => onSubmit(email), 800);
-  };
-
-  const discountPercent = Math.round(COUPON_DISCOUNT_RATE * 100);
-
-  return (
-    <div className="animate-in fade-in slide-in-from-bottom-1 duration-200 text-center py-1.5">
-      <div className="text-4xl mb-2.5">🎁</div>
-      <div className="font-black text-base text-[#1e1e2e] mb-1.5">
-        Almost there!
-      </div>
-      <div className="text-[13px] text-[#777] mb-5 leading-relaxed">
-        Enter your email and get{" "}
-        <strong className="text-[#2A7A6F]">{discountPercent}% off</strong> your
-        first order.
-      </div>
-      <div className="text-left mb-2">
-        <input
-          type="email"
-          placeholder="you@example.com"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setError("");
-          }}
-          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-          className="w-full h-[46px] rounded-xl px-3.5 text-sm text-[#1e1e2e] outline-none transition-colors font-[inherit]"
-          style={{
-            border: `1.5px solid ${error ? "#fca5a5" : email && validate() ? "#86efac" : "#e5e7eb"}`,
-          }}
-        />
-        {error && (
-          <div className="mt-1.5 text-[11px] text-red-600 font-semibold">
-            ⚠️ {error}
-          </div>
-        )}
-      </div>
-      <button
-        className="w-full bg-gradient-to-br from-[#2A7A6F] to-[#1e5c55] text-white border-none rounded-xl py-3 text-[15px] font-bold cursor-pointer shadow-[0_4px_14px_rgba(42,122,111,0.4)] hover:opacity-90 transition-all disabled:opacity-[0.38] disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-2.5"
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? (
-          <>
-            <div className="w-4 h-4 border-[2.5px] border-white/35 border-t-white rounded-full animate-spin" />
-            Applying…
-          </>
-        ) : (
-          `Get ${discountPercent}% Off & Continue →`
-        )}
-      </button>
-      <button
-        onClick={onSkip}
-        className="bg-transparent border-none w-full text-center text-[13px] text-[#888] cursor-pointer py-1 mb-1 underline font-semibold"
-      >
-        Skip for now
-      </button>
-      <div className="text-[11px] text-[#bbb] flex items-center justify-center gap-1.5">
-        <span>🔒</span> We never spam. Unsubscribe anytime.
-      </div>
+      <div className="text-xs text-[#888] text-center">Your design is set.</div>
     </div>
   );
 }
@@ -781,7 +659,7 @@ export function UploadStep() {
       <div className="flex items-center gap-2.5 mb-4">
         <span className="font-bold text-base">Upload & Style Your Design</span>
         {derived.isDesignReady && (
-          <span className="ml-auto text-[11px] text-green-500 font-bold bg-green-50 px-2.5 py-0.5 rounded-full border border-green-200">
+          <span className="ml-auto shrink-0 whitespace-nowrap text-[11px] text-green-500 font-bold bg-green-50 px-2.5 py-0.5 rounded-full border border-green-200">
             ✓ Complete
           </span>
         )}
@@ -794,18 +672,11 @@ export function UploadStep() {
           previewUrl={state.previewUrl}
           error={error}
           onFile={handleFile}
-          onNext={() => dispatch({ type: "WIZARD_START_EMAIL" })}
+          onNext={() => dispatch({ type: "WIZARD_START_PROCESSING" })}
           onRemove={() => {
             dispatch({ type: "CLEAR_FILE" });
             setError(null);
           }}
-        />
-      )}
-
-      {state.wizardStep === "email" && (
-        <EmailSubStep
-          onSubmit={(email) => dispatch({ type: "WIZARD_SUBMIT_EMAIL", email })}
-          onSkip={() => dispatch({ type: "WIZARD_SKIP_EMAIL" })}
         />
       )}
 
@@ -822,15 +693,19 @@ export function UploadStep() {
           generatedImages={state.generatedImages}
           selectedIndex={state.selectedImageIndex}
           onSelect={(index) => dispatch({ type: "SET_SELECTED_IMAGE", index })}
-          onConfirm={() => dispatch({ type: "WIZARD_CONFIRM_STYLE" })}
+          onConfirm={() => {
+            dispatch({ type: "WIZARD_CONFIRM_STYLE" });
+            setTimeout(() => {
+              document
+                .getElementById("quantity-step")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+          }}
         />
       )}
 
       {state.wizardStep === "result" && selectedImageUrl && (
-        <ResultSubStep
-          selectedImageUrl={selectedImageUrl}
-          onReset={() => dispatch({ type: "WIZARD_RESET" })}
-        />
+        <ResultSubStep selectedImageUrl={selectedImageUrl} />
       )}
     </div>
   );

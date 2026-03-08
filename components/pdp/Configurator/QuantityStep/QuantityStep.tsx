@@ -36,7 +36,10 @@ export function QuantityStep() {
   const isMaxTier = qty >= 100;
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)] overflow-hidden">
+    <div
+      id="quantity-step"
+      className="scroll-mt-24 bg-white rounded-2xl p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)] overflow-hidden"
+    >
       <div className="flex items-center gap-2.5 mb-5">
         <span className="font-bold text-base">Select Quantity</span>
       </div>

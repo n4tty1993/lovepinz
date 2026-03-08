@@ -5,23 +5,13 @@ import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
 import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
-import {
-  SIZE_OPTIONS,
-  FINISH_OPTIONS,
-  COUPON_CODE,
-} from "../Configurator.constants";
+import { COUPON_CODE } from "../Configurator.constants";
 
 export function PriceDisplay() {
   const router = useRouter();
   const { state, derived } = useConfigurator();
 
   const hasDesignSelected = state.selectedImageIndex !== null;
-  const sizeDiameter =
-    SIZE_OPTIONS.find((o) => o.value === state.size)?.diameter ??
-    `${state.size}"`;
-  const finishLabel =
-    FINISH_OPTIONS.find((o) => o.value === state.finish)?.label ?? state.finish;
-
   const rows: {
     label: string;
     value: string;
@@ -34,8 +24,6 @@ export function PriceDisplay() {
       value: hasDesignSelected ? "Selected" : "Not selected yet",
       warn: !hasDesignSelected,
     },
-    { label: "Pin size", value: `${sizeDiameter} pin` },
-    { label: "Finish", value: finishLabel },
     { label: "Quantity", value: `${state.quantity} pieces` },
     {
       label: "Price per pin",

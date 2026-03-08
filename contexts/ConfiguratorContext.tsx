@@ -15,12 +15,7 @@ export type PinSize = "1" | "1.25" | "1.5" | "2";
 export type PinFinish = "gold" | "silver" | "black-nickel" | "rose-gold";
 
 export type ProcessingPhase = "idle" | "uploading" | "processing" | "complete";
-export type WizardStep =
-  | "upload"
-  | "email"
-  | "processing"
-  | "choose"
-  | "result";
+export type WizardStep = "upload" | "processing" | "choose" | "result";
 
 export interface ConfiguratorState {
   file: File | null;
@@ -45,16 +40,11 @@ export type ConfiguratorAction =
   | { type: "SET_WIZARD_PROGRESS"; progress: number }
   | { type: "SET_GENERATED_IMAGES"; images: string[][] }
   | { type: "SET_SELECTED_IMAGE"; index: number }
-  | { type: "WIZARD_START_EMAIL" }
-  | { type: "WIZARD_SUBMIT_EMAIL"; email: string }
-  | { type: "WIZARD_SKIP_EMAIL" }
   | { type: "WIZARD_START_PROCESSING" }
   | { type: "WIZARD_PROCESSING_DONE" }
   | { type: "WIZARD_CONFIRM_STYLE" }
   | { type: "WIZARD_RESET" }
-  | { type: "SET_SIZE"; size: PinSize }
-  | { type: "SET_QUANTITY"; quantity: number }
-  | { type: "SET_FINISH"; finish: PinFinish };
+  | { type: "SET_QUANTITY"; quantity: number };
 
 export interface DerivedState extends PricingResult {
   isDesignReady: boolean;
@@ -112,22 +102,10 @@ function configuratorReducer(
       return { ...state, generatedImages: action.images };
     case "SET_SELECTED_IMAGE":
       return { ...state, selectedImageIndex: action.index };
-    case "WIZARD_START_EMAIL":
-      return { ...state, wizardStep: "email" };
-    case "WIZARD_SUBMIT_EMAIL":
-      return {
-        ...state,
-        email: action.email,
-        hasCoupon: true,
-        wizardStep: "processing",
-        wizardProgress: 0,
-      };
-    case "WIZARD_SKIP_EMAIL":
-      return { ...state, wizardStep: "processing", wizardProgress: 0 };
     case "WIZARD_START_PROCESSING":
       return { ...state, wizardStep: "processing", wizardProgress: 0 };
     case "WIZARD_PROCESSING_DONE":
-      return { ...state, wizardStep: "choose" };
+      return { ...state, wizardStep: "choose", selectedImageIndex: 0 };
     case "WIZARD_CONFIRM_STYLE":
       return { ...state, wizardStep: "result", processingPhase: "complete" };
     case "WIZARD_RESET":
@@ -143,12 +121,8 @@ function configuratorReducer(
         email: null,
         hasCoupon: false,
       };
-    case "SET_SIZE":
-      return { ...state, size: action.size };
     case "SET_QUANTITY":
       return { ...state, quantity: action.quantity };
-    case "SET_FINISH":
-      return { ...state, finish: action.finish };
     default:
       return state;
   }

@@ -1,9 +1,7 @@
 "use client";
 
 import { UploadStep } from "./UploadStep/UploadStep";
-import { SizeStep } from "./SizeStep/SizeStep";
 import { QuantityStep } from "./QuantityStep/QuantityStep";
-import { FinishStep } from "./FinishStep/FinishStep";
 import { PriceDisplay } from "./PriceDisplay/PriceDisplay";
 
 export function Configurator() {
@@ -20,8 +18,6 @@ export function Configurator() {
 
       <UploadStep />
       <QuantityStep />
-      <FinishStep />
-      <SizeStep />
       <PriceDisplay />
     </div>
   );

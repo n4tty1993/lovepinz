@@ -35,7 +35,7 @@
     "yup": "1.7.1"
   },
   "devDependencies": {
-    "@react-grab/mcp": "^0.1.18",
+    "@react-grab/mcp": "^0.1.26",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -46,6 +46,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
+    "react-grab": "^0.1.26",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
