@@ -3,6 +3,7 @@
 import { UploadStep } from "./UploadStep/UploadStep";
 import { QuantityStep } from "./QuantityStep/QuantityStep";
 import { PriceDisplay } from "./PriceDisplay/PriceDisplay";
+import { ReviewsBadge } from "./ReviewsBadge";
 
 export function Configurator() {
   return (
@@ -14,6 +15,8 @@ export function Configurator() {
         <h1 className="text-3xl md:text-4xl font-bold text-[#2C1A0E] tracking-tight">
           Design Your Pin
         </h1>
+
+        <ReviewsBadge />
       </div>
 
       <UploadStep />

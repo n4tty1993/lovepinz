@@ -299,7 +299,7 @@ export function ReviewSection() {
   const visible = showAll ? sorted : sorted.slice(0, 3);
 
   return (
-    <section className="bg-[var(--brand-cream)] py-20 md:py-24">
+    <section id="reviews" className="bg-[var(--brand-cream)] py-20 md:py-24">
       <div className="mx-auto max-w-2xl px-4 md:px-6">
         {/* Section heading */}
         <motion.div
@@ -332,7 +332,7 @@ export function ReviewSection() {
               </div>
               <Stars count={5} size={16} />
               <div className="mt-1 text-xs text-[var(--brand-muted)]">
-                312 reviews
+                {sorted.length} reviews
               </div>
             </div>
             <div className="min-w-[180px] flex-1">

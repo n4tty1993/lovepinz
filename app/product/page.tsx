@@ -15,13 +15,13 @@ export default function ProductPage() {
     <main>
       {/* Meta Pixel: ViewContent */}
       <PDPViewContent />
-      <ReviewSection />
 
       {/* Interactive zone */}
       <PDPHero />
 
       {/* UGC social proof */}
       <UGCCarousel />
+      <ReviewSection />
 
       {/* Static educational zone — server-rendered */}
       <TrustBar />

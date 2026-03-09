@@ -154,7 +154,7 @@ export function QuantityStep() {
           <div className="flex items-start justify-between gap-2.5">
             <div>
               <div className="text-xs font-extrabold text-amber-800 mb-0.5">
-                💡 Add {nextTier.min - qty} more → save $
+                Add {nextTier.min - qty} more → save $
                 {(pricePerUnit - nextTier.price).toFixed(2)}/unit
               </div>
               <div className="text-[11px] text-amber-700 leading-relaxed">
