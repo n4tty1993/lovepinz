@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { fadeUpVariants } from "@/constants/animations";
 import { SLIDES } from "./UGCCarousel.constants";
-import type { VideoSlide, PlaceholderSlide } from "./UGCCarousel.types";
+import type { VideoSlide } from "./UGCCarousel.types";
 
 function TikTokIcon({
   size = 16,
@@ -135,63 +135,6 @@ function VimeoCard({
   );
 }
 
-function PlaceholderCard({
-  slide,
-  isCenter,
-  muted,
-  onToggleMute,
-}: {
-  slide: PlaceholderSlide;
-  isCenter: boolean;
-  muted: boolean;
-  onToggleMute: () => void;
-}) {
-  return (
-    <div
-      className="relative flex h-full w-full flex-col items-center justify-center"
-      style={{
-        background: `linear-gradient(160deg, ${slide.bg[0]} 0%, ${slide.bg[1]} 100%)`,
-      }}
-    >
-      <div className="mb-3 text-[64px] drop-shadow-md">{slide.emoji}</div>
-      <p
-        className="px-5 text-center text-[13px] font-semibold leading-snug"
-        style={{ color: slide.accent }}
-      >
-        {slide.label}
-      </p>
-
-      {/* Bottom overlay */}
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between rounded-b-[20px] bg-gradient-to-t from-black/55 to-transparent px-3 pb-3 pt-6">
-        <span className="text-xs font-semibold text-white">
-          {slide.username}
-        </span>
-        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-          {slide.platform === "instagram" ? (
-            <Instagram size={14} className="text-white" />
-          ) : (
-            <TikTokIcon size={14} className="text-white" />
-          )}
-        </div>
-      </div>
-
-      {/* Mute toggle (placeholder has no audio) */}
-      {isCenter && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleMute();
-          }}
-          aria-label="No audio"
-          className="absolute left-2.5 top-2.5 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/45"
-        >
-          <VolumeX size={14} className="text-white" />
-        </button>
-      )}
-    </div>
-  );
-}
-
 export function UGCCarousel() {
   const shouldReduceMotion = useReducedMotion();
   const [current, setCurrent] = useState(0);
@@ -216,14 +159,6 @@ export function UGCCarousel() {
     dragStart.current = null;
     setDragging(false);
   };
-
-  const centerIsVideo = SLIDES[current].type === "video";
-  useEffect(() => {
-    if (centerIsVideo) return;
-    const t = setInterval(next, 4000);
-    return () => clearInterval(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [centerIsVideo, current]);
 
   return (
     <section className="bg-white py-16 md:py-20">
@@ -284,21 +219,12 @@ export function UGCCarousel() {
                   pointerEvents: isHidden ? "none" : "auto",
                 }}
               >
-                {slide.type === "video" ? (
-                  <VimeoCard
-                    slide={slide}
-                    isCenter={isCenter}
-                    muted={muted}
-                    onToggleMute={() => setMuted((m) => !m)}
-                  />
-                ) : (
-                  <PlaceholderCard
-                    slide={slide}
-                    isCenter={isCenter}
-                    muted={muted}
-                    onToggleMute={() => setMuted((m) => !m)}
-                  />
-                )}
+                <VimeoCard
+                  slide={slide}
+                  isCenter={isCenter}
+                  muted={muted}
+                  onToggleMute={() => setMuted((m) => !m)}
+                />
               </div>
             );
           })}

@@ -1,9 +1,9 @@
 import type { PricingTier, PricingResult } from "./pricing.types";
 
 export const PRICING_TIERS: PricingTier[] = [
-  { minQuantity: 100, unitPrice: 2.2 },
-  { minQuantity: 50, unitPrice: 2.6 },
-  { minQuantity: 25, unitPrice: 3.0 },
+  { minQuantity: 100, unitPrice: 4.99 },
+  { minQuantity: 50, unitPrice: 5.99 },
+  { minQuantity: 25, unitPrice: 6.99 },
 ];
 
 export const MIN_QUANTITY = 25;

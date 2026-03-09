@@ -8,12 +8,7 @@ export interface Review {
   date: string;
   verified: boolean;
   helpful: number;
-  hasImages: boolean;
-}
-
-export interface MockImage {
-  bg: string;
-  stroke: string;
+  images?: string[];
 }
 
 export type SortOption = "recent" | "highest" | "lowest" | "helpful";

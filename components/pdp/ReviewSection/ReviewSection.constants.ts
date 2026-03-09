@@ -1,8 +1,4 @@
-import type {
-  Review,
-  MockImage,
-  RatingDistribution,
-} from "./ReviewSection.types";
+import type { Review, RatingDistribution } from "./ReviewSection.types";
 
 export const REVIEWS: Review[] = [
   {
@@ -15,7 +11,11 @@ export const REVIEWS: Review[] = [
     date: "Feb 18, 2026",
     verified: true,
     helpful: 24,
-    hasImages: true,
+    images: [
+      "/assets/reviews/1/37176375-0-0.webp",
+      "/assets/reviews/1/37176376-0-0.webp",
+      "/assets/reviews/1/37176377-0-0.webp",
+    ],
   },
   {
     id: 2,
@@ -27,7 +27,11 @@ export const REVIEWS: Review[] = [
     date: "Feb 10, 2026",
     verified: true,
     helpful: 17,
-    hasImages: false,
+    images: [
+      "/assets/reviews/2/37176997-0-0.webp",
+      "/assets/reviews/2/37239778-0-0.webp",
+      "/assets/reviews/2/37239779-0-0.webp",
+    ],
   },
   {
     id: 3,
@@ -39,7 +43,10 @@ export const REVIEWS: Review[] = [
     date: "Jan 29, 2026",
     verified: true,
     helpful: 9,
-    hasImages: false,
+    images: [
+      "/assets/reviews/3/37177433-0-0.webp",
+      "/assets/reviews/3/37177537-0-0.webp",
+    ],
   },
   {
     id: 4,
@@ -51,7 +58,7 @@ export const REVIEWS: Review[] = [
     date: "Jan 22, 2026",
     verified: false,
     helpful: 31,
-    hasImages: true,
+    images: ["/assets/reviews/4/37900187-0-0.webp"],
   },
   {
     id: 5,
@@ -63,7 +70,11 @@ export const REVIEWS: Review[] = [
     date: "Jan 14, 2026",
     verified: true,
     helpful: 5,
-    hasImages: false,
+    images: [
+      "/assets/reviews/5/37203344-0-0.webp",
+      "/assets/reviews/5/37203345-0-0.webp",
+      "/assets/reviews/5/37899383-0-0.webp",
+    ],
   },
   {
     id: 6,
@@ -75,7 +86,7 @@ export const REVIEWS: Review[] = [
     date: "Jan 5, 2026",
     verified: true,
     helpful: 12,
-    hasImages: false,
+    images: ["/assets/reviews/6/37900185-0-0.webp"],
   },
   {
     id: 7,
@@ -87,7 +98,7 @@ export const REVIEWS: Review[] = [
     date: "Dec 30, 2025",
     verified: true,
     helpful: 19,
-    hasImages: true,
+    images: ["/assets/reviews/7/37496528-0-0.webp"],
   },
   {
     id: 8,
@@ -99,7 +110,10 @@ export const REVIEWS: Review[] = [
     date: "Dec 21, 2025",
     verified: true,
     helpful: 8,
-    hasImages: false,
+    images: [
+      "/assets/reviews/8/37553745-0-0.webp",
+      "/assets/reviews/8/37850796-0-0.webp",
+    ],
   },
   {
     id: 9,
@@ -111,7 +125,7 @@ export const REVIEWS: Review[] = [
     date: "Dec 15, 2025",
     verified: true,
     helpful: 22,
-    hasImages: false,
+    images: ["/assets/reviews/9/37496347-0-0.webp"],
   },
   {
     id: 10,
@@ -123,7 +137,7 @@ export const REVIEWS: Review[] = [
     date: "Dec 9, 2025",
     verified: false,
     helpful: 6,
-    hasImages: false,
+    images: ["/assets/reviews/10/37899838-0-0.webp"],
   },
   {
     id: 11,
@@ -135,7 +149,7 @@ export const REVIEWS: Review[] = [
     date: "Dec 2, 2025",
     verified: true,
     helpful: 28,
-    hasImages: true,
+    images: ["/assets/reviews/11/37176652-0-0.webp"],
   },
   {
     id: 12,
@@ -147,7 +161,6 @@ export const REVIEWS: Review[] = [
     date: "Nov 25, 2025",
     verified: true,
     helpful: 14,
-    hasImages: false,
   },
   {
     id: 13,
@@ -159,7 +172,6 @@ export const REVIEWS: Review[] = [
     date: "Nov 18, 2025",
     verified: true,
     helpful: 33,
-    hasImages: false,
   },
   {
     id: 14,
@@ -171,7 +183,6 @@ export const REVIEWS: Review[] = [
     date: "Nov 10, 2025",
     verified: true,
     helpful: 3,
-    hasImages: false,
   },
   {
     id: 15,
@@ -183,7 +194,6 @@ export const REVIEWS: Review[] = [
     date: "Nov 3, 2025",
     verified: true,
     helpful: 41,
-    hasImages: true,
   },
   {
     id: 16,
@@ -195,7 +205,6 @@ export const REVIEWS: Review[] = [
     date: "Oct 27, 2025",
     verified: false,
     helpful: 10,
-    hasImages: false,
   },
 ];
 
@@ -206,11 +215,6 @@ export const RATING_DISTRIBUTION: RatingDistribution = {
   2: 4,
   1: 2,
 };
-
-export const MOCK_IMAGES: MockImage[] = [
-  { bg: "#edf5ea", stroke: "#2a7a6f" },
-  { bg: "#fef9ec", stroke: "#d4a030" },
-];
 
 export const HIGHLIGHT_TAGS: [string, number][] = [
   ["Quality", 94],

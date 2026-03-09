@@ -2,29 +2,18 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  ThumbsUp,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  ImageIcon,
-} from "lucide-react";
+import Image from "next/image";
+import { ThumbsUp, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUpVariants } from "@/constants/animations";
 import {
   REVIEWS,
   RATING_DISTRIBUTION,
-  MOCK_IMAGES,
   HIGHLIGHT_TAGS,
   AVATAR_HUES,
   SORT_OPTIONS,
   FILTER_OPTIONS,
 } from "./ReviewSection.constants";
-import type {
-  Review,
-  SortOption,
-  FilterOption,
-  MockImage,
-} from "./ReviewSection.types";
+import type { Review, SortOption, FilterOption } from "./ReviewSection.types";
 
 function getAvatarColors(seed: number) {
   const h = AVATAR_HUES[seed % AVATAR_HUES.length];
@@ -59,7 +48,7 @@ function ZoomModal({
   reviewer,
   onClose,
 }: {
-  images: MockImage[];
+  images: string[];
   initialIndex: number;
   reviewer: string;
   onClose: () => void;
@@ -112,11 +101,14 @@ function ZoomModal({
         </div>
 
         {/* Image area */}
-        <div
-          className="relative flex h-[300px] items-center justify-center"
-          style={{ background: images[idx].bg }}
-        >
-          <ImageIcon size={64} color={images[idx].stroke} />
+        <div className="relative h-[300px]">
+          <Image
+            src={images[idx]}
+            alt={`Review photo ${idx + 1} by ${reviewer}`}
+            fill
+            className="object-contain"
+            sizes="480px"
+          />
           {n > 1 && (
             <>
               <button
@@ -140,18 +132,23 @@ function ZoomModal({
         {/* Thumbnails */}
         {n > 1 && (
           <div className="flex justify-center gap-2 border-t border-gray-200 p-3">
-            {images.map((im, i) => (
+            {images.map((src, i) => (
               <button
                 key={i}
                 onClick={() => setIdx(i)}
                 aria-label={`Image ${i + 1}`}
-                className="flex h-12 w-12 items-center justify-center rounded-[10px]"
+                className="relative h-12 w-12 overflow-hidden rounded-[10px]"
                 style={{
-                  background: im.bg,
                   border: `2px solid ${i === idx ? "#2a7a6f" : "#e5e7eb"}`,
                 }}
               >
-                <ImageIcon size={18} color={im.stroke} />
+                <Image
+                  src={src}
+                  alt={`Thumbnail ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
               </button>
             ))}
           </div>
@@ -166,11 +163,7 @@ function ReviewCard({
   onZoom,
 }: {
   review: Review;
-  onZoom: (data: {
-    images: MockImage[];
-    index: number;
-    reviewer: string;
-  }) => void;
+  onZoom: (data: { images: string[]; index: number; reviewer: string }) => void;
 }) {
   const [voted, setVoted] = useState(false);
   const { bg, fg } = getAvatarColors(review.id);
@@ -231,19 +224,28 @@ function ReviewCard({
       </p>
 
       {/* Thumbnails */}
-      {review.hasImages && (
+      {review.images && review.images.length > 0 && (
         <div className="mt-3 flex gap-2">
-          {MOCK_IMAGES.map((img, i) => (
+          {review.images.map((src, i) => (
             <button
               key={i}
               onClick={() =>
-                onZoom({ images: MOCK_IMAGES, index: i, reviewer: review.name })
+                onZoom({
+                  images: review.images!,
+                  index: i,
+                  reviewer: review.name,
+                })
               }
               aria-label={`View photo ${i + 1} by ${review.name}`}
-              className="flex h-16 w-16 cursor-zoom-in items-center justify-center rounded-[10px] border border-[#b2d8d4] transition-transform hover:scale-105 hover:shadow-md"
-              style={{ background: img.bg }}
+              className="relative h-16 w-16 cursor-zoom-in overflow-hidden rounded-[10px] border border-[#b2d8d4] transition-transform hover:scale-105 hover:shadow-md"
             >
-              <ImageIcon size={20} color={img.stroke} />
+              <Image
+                src={src}
+                alt={`Review photo ${i + 1} by ${review.name}`}
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
             </button>
           ))}
         </div>
@@ -277,7 +279,7 @@ export function ReviewSection() {
   const [filter, setFilter] = useState<FilterOption>("all");
   const [showAll, setShowAll] = useState(false);
   const [zoom, setZoom] = useState<{
-    images: MockImage[];
+    images: string[];
     index: number;
     reviewer: string;
   } | null>(null);
