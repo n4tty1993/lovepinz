@@ -97,14 +97,11 @@ function VimeoCard({
         src={src}
         allow="autoplay; fullscreen; picture-in-picture"
         className="block h-full w-full rounded-[20px] border-0"
-        title={`UGC video by ${slide.username}`}
+        title={`UGC video by ${slide.vimeoId}`}
       />
 
       {/* Bottom overlay */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between rounded-b-[20px] bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-6">
-        <span className="text-xs font-semibold text-white">
-          {slide.username}
-        </span>
         <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
           {slide.platform === "instagram" ? (
             <Instagram size={14} className="text-white" />
@@ -122,7 +119,7 @@ function VimeoCard({
             onToggleMute();
           }}
           aria-label={muted ? "Unmute" : "Mute"}
-          className="absolute left-2.5 top-2.5 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/50 backdrop-blur-sm"
+          className="absolute left-2.5 top-2.5 z-20 flex h-[30px] w-[30px] items-center justify-center rounded-full bg-black/50 backdrop-blur-sm"
         >
           {muted ? (
             <VolumeX size={14} className="text-white" />
@@ -139,26 +136,51 @@ export function UGCCarousel() {
   const shouldReduceMotion = useReducedMotion();
   const [current, setCurrent] = useState(0);
   const [muted, setMuted] = useState(true);
-  const [dragging, setDragging] = useState(false);
-  const dragStart = useRef<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number | null>(null);
+  const isSwiping = useRef(false);
   const n = SLIDES.length;
 
   const prev = () => setCurrent((c) => (c - 1 + n) % n);
   const next = () => setCurrent((c) => (c + 1) % n);
 
-  const onDragStart = (x: number) => {
-    dragStart.current = x;
-    setDragging(true);
-  };
-  const onDragEnd = (x: number) => {
-    if (!dragging || dragStart.current === null) return;
-    const d = dragStart.current - x;
-    if (Math.abs(d) > 40) {
-      d > 0 ? next() : prev();
-    }
-    dragStart.current = null;
-    setDragging(false);
-  };
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      dragStartX.current = e.touches[0].clientX;
+      isSwiping.current = false;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (dragStartX.current === null) return;
+      const dx = e.touches[0].clientX - dragStartX.current;
+      if (Math.abs(dx) > 10) {
+        isSwiping.current = true;
+        e.preventDefault();
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (dragStartX.current === null) return;
+      const dx = dragStartX.current - e.changedTouches[0].clientX;
+      if (isSwiping.current && Math.abs(dx) > 40) {
+        dx > 0 ? next() : prev();
+      }
+      dragStartX.current = null;
+      isSwiping.current = false;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [n]);
 
   return (
     <section className="bg-white py-16 md:py-20">
@@ -184,15 +206,9 @@ export function UGCCarousel() {
 
         {/* Track */}
         <div
+          ref={trackRef}
           className="relative h-[320px] overflow-hidden"
-          style={{ touchAction: "pan-y" }}
-          onMouseDown={(e) => onDragStart(e.clientX)}
-          onMouseUp={(e) => onDragEnd(e.clientX)}
-          onMouseLeave={(e) => {
-            if (dragging) onDragEnd(e.clientX);
-          }}
-          onTouchStart={(e) => onDragStart(e.touches[0].clientX)}
-          onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
+          style={{ touchAction: "pan-y pinch-zoom" }}
         >
           {SLIDES.map((slide, i) => {
             let pos = i - current;
@@ -225,6 +241,8 @@ export function UGCCarousel() {
                   muted={muted}
                   onToggleMute={() => setMuted((m) => !m)}
                 />
+                {/* Transparent overlay to capture touch events over iframes */}
+                <div className="absolute inset-0 z-10 md:hidden" />
               </div>
             );
           })}

@@ -12,6 +12,8 @@ export function sendAddToCartWebhook(params: {
   hasCoupon: boolean;
   email: string | null;
 }) {
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV !== "production") return;
+
   fetch(WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

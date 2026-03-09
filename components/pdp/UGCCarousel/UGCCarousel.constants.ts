@@ -6,7 +6,6 @@ export const SLIDES: Slide[] = [
     type: "video",
     vimeoId: "1171748319",
     vimeoHash: "1235cdabb4",
-    username: "@marcuslifts",
     platform: "tiktok",
   },
   {
@@ -14,7 +13,6 @@ export const SLIDES: Slide[] = [
     type: "video",
     vimeoId: "1171748286",
     vimeoHash: "9675ac5079",
-    username: "@danielcooks",
     platform: "tiktok",
   },
   {
@@ -22,14 +20,12 @@ export const SLIDES: Slide[] = [
     type: "video",
     vimeoId: "1171537684",
     vimeoHash: "35507847e2",
-    username: "@sarahstyle",
     platform: "instagram",
   },
   {
     id: 4,
     type: "video",
     vimeoId: "1171537667",
-    username: "@racheltravels",
     platform: "instagram",
   },
 ];

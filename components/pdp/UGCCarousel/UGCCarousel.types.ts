@@ -3,7 +3,6 @@ export interface VideoSlide {
   type: "video";
   vimeoId: string;
   vimeoHash?: string;
-  username: string;
   platform: "instagram" | "tiktok";
 }
 

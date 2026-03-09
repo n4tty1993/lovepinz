@@ -15,6 +15,7 @@ export default function ProductPage() {
     <main>
       {/* Meta Pixel: ViewContent */}
       <PDPViewContent />
+      <ReviewSection />
 
       {/* Interactive zone */}
       <PDPHero />
@@ -28,7 +29,6 @@ export default function ProductPage() {
       <ProductSpecs />
       <MagnetStrength />
       <CustomerExamples />
-      <ReviewSection />
       <PDPFAQSection />
       <PDPFinalCTA />
     </main>
