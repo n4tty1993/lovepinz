@@ -39,7 +39,7 @@ export const REVIEWS: Review[] = [
     initials: "RT",
     rating: 4,
     title: "Great quality, minor packaging issue",
-    body: "The product itself is excellent — exactly as described. My only gripe is the outer box arrived slightly dented. The contents were fine though. Customer support was super responsive when I reached out.",
+    body: "The product itself is excellent. exactly as described. My only gripe is the outer box arrived slightly dented. The contents were fine though. Customer support was super responsive when I reached out.",
     date: "Jan 29, 2026",
     verified: true,
     helpful: 9,
@@ -173,19 +173,9 @@ export const REVIEWS: Review[] = [
     verified: true,
     helpful: 33,
   },
+
   {
     id: 14,
-    name: "Ryan G.",
-    initials: "RG",
-    rating: 2,
-    title: "Not quite what I expected",
-    body: "A bit disappointed honestly. The product works but feels cheaper in person than it looks in the photos. For this price I expected better. Customer support was polite but couldn't resolve my concern.",
-    date: "Nov 10, 2025",
-    verified: true,
-    helpful: 3,
-  },
-  {
-    id: 15,
     name: "Nadia R.",
     initials: "NR",
     rating: 5,
@@ -196,7 +186,7 @@ export const REVIEWS: Review[] = [
     helpful: 41,
   },
   {
-    id: 16,
+    id: 15,
     name: "Ben F.",
     initials: "BF",
     rating: 4,
