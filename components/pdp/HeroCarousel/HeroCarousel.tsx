@@ -22,6 +22,7 @@ function CarouselSlide({
         priority={priority}
         className="object-cover"
         sizes="(max-width: 768px) 100vw, 50vw"
+        quality={100}
       />
     </div>
   );
