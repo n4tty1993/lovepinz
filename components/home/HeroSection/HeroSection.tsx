@@ -41,7 +41,7 @@ export function HeroSection() {
             <span className="text-[#2C1A0E] font-semibold">
               No holes. No fabric damage.
             </span>{" "}
-            Minimum 25 pieces.
+            Minimum 10 pieces.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">

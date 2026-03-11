@@ -64,7 +64,7 @@ const initialState: ConfiguratorState = {
   email: null,
   hasCoupon: false,
   size: "1",
-  quantity: 25,
+  quantity: 10,
   finish: "gold",
 };
 
@@ -148,7 +148,7 @@ export function ConfiguratorProvider({ children }: { children: ReactNode }) {
     return {
       ...pricing,
       isDesignReady,
-      canAddToCart: isDesignReady && state.quantity >= 25,
+      canAddToCart: isDesignReady && state.quantity >= 10,
       couponDiscount,
       finalPrice,
     };

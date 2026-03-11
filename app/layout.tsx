@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/shared/Navbar/Navbar";
-import { Footer } from "@/components/shared/Footer/Footer";
 import { Providers } from "@/components/shared/Providers/Providers";
+import { LayoutShell } from "@/components/shared/LayoutShell/LayoutShell";
 import { MetaPixelPageView } from "@/components/shared/MetaPixelPageView";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -17,7 +16,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Custom Magnetic Pins — No Holes. No Damage.",
   description:
-    "Design and order custom enamel magnetic pins online. No holes, no fabric damage. Minimum 25 pieces. Free shipping across the USA.",
+    "Design and order custom enamel magnetic pins online. No holes, no fabric damage. Minimum 10 pieces. Free shipping across the USA.",
   icons: {
     icon: "/assets/logo_trans.png",
   },
@@ -86,9 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body className={`${geistSans.variable} antialiased`}>
         <Providers>
           <MetaPixelPageView />
-          <Navbar />
-          {children}
-          <Footer />
+          <LayoutShell>{children}</LayoutShell>
         </Providers>
 
         <Analytics />

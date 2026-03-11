@@ -4,7 +4,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is the minimum order?",
     answer:
-      "Our minimum order is 25 pieces per design. This allows us to maintain quality control and offer competitive pricing.",
+      "Our minimum order is 10 pieces per design. This allows us to maintain quality control and offer competitive pricing.",
   },
   {
     question: "How strong are the magnets?",

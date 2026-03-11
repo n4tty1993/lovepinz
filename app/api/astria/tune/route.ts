@@ -6,7 +6,8 @@ import {
   getPackGenerationStatusWithTimeout,
 } from "@/lib/astria";
 
-const PACK_ID = 4287;
+const DEFAULT_PACK_ID = 4287;
+const PET_PACK_ID = 4368;
 const S3_BUCKET = "timetotale-qa";
 
 const MOCK_RESPONSE = {
@@ -28,10 +29,13 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     const file = formData.get("image") as File | null;
+    const occasion = formData.get("occasion") as string | null;
 
     if (!file) {
       return NextResponse.json({ error: "No image provided" }, { status: 400 });
     }
+
+    const packId = occasion === "pet" ? PET_PACK_ID : DEFAULT_PACK_ID;
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const key = `uploads/lovepinz/${uuidv4()}-${file.name}`;
@@ -45,9 +49,9 @@ export async function POST(request: Request) {
     });
 
     const tune = await createTuneFromPack({
-      packId: PACK_ID,
+      packId,
       title: uuidv4(),
-      name: "image",
+      name: occasion === "pet" ? "pet" : "image",
       image_urls: [imageUrl],
     });
 
