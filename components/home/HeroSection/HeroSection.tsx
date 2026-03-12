@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   HERO_CARDS,
@@ -11,36 +12,50 @@ export function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="flex flex-col items-center gap-10">
           {/* Product Cards */}
-          <div className="flex justify-center gap-4 md:gap-6 w-full max-w-md md:max-w-lg">
+          <div className="flex justify-center gap-3 md:gap-6 w-full max-w-sm md:max-w-lg">
             {HERO_CARDS.map((card, i) => (
               <Link
                 key={card.title}
                 href="/funnel"
-                className={`group relative flex-1 rounded-2xl p-4 md:p-5 ${card.bgColor} text-white transition-transform hover:scale-[1.03] ${
-                  i === 0 ? "-rotate-3" : "rotate-3"
+                className={`group relative w-[48%] md:w-[45%] rounded-2xl overflow-hidden aspect-[3/4] text-white transition-transform hover:scale-[1.03] hover:z-20 shadow-xl ${
+                  i === 0 ? "-rotate-4 z-4" : "rotate-4"
                 }`}
               >
-                <p className="text-[10px] md:text-xs font-semibold tracking-widest uppercase opacity-70">
-                  {card.label}
-                </p>
+                {/* Full-card background image */}
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
 
-                <div className="flex justify-center my-4 md:my-5">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center">
-                    <span className="text-3xl md:text-4xl">{card.emoji}</span>
+                {/* Gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
+
+                {/* Content on top */}
+                <div className="relative z-10 flex flex-col justify-between h-full p-4 md:p-5">
+                  <div>
+                    <p className="text-[10px] md:text-xs font-semibold tracking-widest uppercase text-white/80">
+                      {card.label}
+                    </p>
                   </div>
-                </div>
 
-                <h3 className="text-base md:text-lg font-bold">{card.title}</h3>
-                <p className="text-xs md:text-sm opacity-70 mt-0.5">
-                  {card.subtitle}
-                </p>
-
-                <div className="mt-3">
-                  <span
-                    className={`inline-block text-[10px] md:text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-md ${card.badgeColor}`}
-                  >
-                    {card.badge}
-                  </span>
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold drop-shadow-md">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-white/80 mt-0.5 drop-shadow-md">
+                      {card.subtitle}
+                    </p>
+                    <div className="mt-3">
+                      <span
+                        className={`inline-block text-[10px] md:text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-md ${card.badgeColor}`}
+                      >
+                        {card.badge}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}

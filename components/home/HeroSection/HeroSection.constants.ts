@@ -1,18 +1,18 @@
 export const HERO_CARDS = [
   {
-    label: "CUSTOM PIN · 2025",
+    label: "CUSTOM PIN · 2026",
     title: "Wedding Pin",
     subtitle: "Keepsake for every guest",
-    emoji: "💍",
+    image: "/assets/wedding/1.webp",
     badge: "⭐ BESTSELLER",
     badgeColor: "bg-[#2A7A6F] text-white",
     bgColor: "bg-gradient-to-b from-[#1a2e3a] to-[#0f1f28]",
   },
   {
-    label: "FAN FAVORITE · 2025",
+    label: "FAN FAVORITE · 2026",
     title: "Pet Pin",
     subtitle: "Your furry friend, forever",
-    emoji: "🐶",
+    image: "/assets/pet/1.webp",
     badge: "🏆 #1 GIFT IDEA",
     badgeColor: "bg-[#F5C842] text-[#2C1A0E]",
     bgColor: "bg-gradient-to-b from-[#1a4a3a] to-[#0f2e22]",
