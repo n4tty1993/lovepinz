@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { trackAddToCart } from "@/lib/meta-pixel";
+import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
 import { getTier } from "@/components/funnel/FunnelFlow/FunnelFlow.constants";
 import type { PinStyleOption } from "@/components/funnel/FunnelFlow/FunnelFlow.types";
 import { FunnelNav } from "@/components/funnel/FunnelNav/FunnelNav";
@@ -55,6 +56,18 @@ export function OrderSummaryStep({
       value: qty * tier.price,
       currency: "USD",
       quantity: qty,
+    });
+
+    sendAddToCartWebhook({
+      quantity: qty,
+      size: "Standard",
+      finish: style.label,
+      unitPrice: tier.price,
+      totalPrice: qty * tier.price,
+      finalPrice: qty * tier.price,
+      couponDiscount: 0,
+      hasCoupon: false,
+      email: null,
     });
 
     router.push("/checkout");
