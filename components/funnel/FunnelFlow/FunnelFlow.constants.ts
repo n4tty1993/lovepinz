@@ -85,21 +85,21 @@ export const OCCASIONS: OccasionOption[] = [
       },
     ],
   },
-  {
-    id: "birthday",
-    label: "Birthday Party",
-    title: "Custom Enamel Pin\nfor Birthday Party",
-    desc: "Turn the birthday star into a wearable icon",
-    tag: "Fan Favorite \u2728",
-    slides: [
-      { emoji: "\ud83c\udf82", bg: "#fff5f0", label: "Cake" },
-      { emoji: "\ud83c\udf88", bg: "#f5f0ff", label: "Balloon" },
-      { emoji: "\ud83c\udf89", bg: "#fff0f5", label: "Confetti" },
-      { emoji: "\ud83c\udf81", bg: "#f0fff5", label: "Gift" },
-      { emoji: "\ud83d\udc51", bg: "#fffbe0", label: "Crown" },
-      { emoji: "\ud83c\udf1f", bg: "#f0f5ff", label: "Star" },
-    ],
-  },
+  // {
+  //   id: "birthday",
+  //   label: "Birthday Party",
+  //   title: "Custom Enamel Pin\nfor Birthday Party",
+  //   desc: "Turn the birthday star into a wearable icon",
+  //   tag: "Fan Favorite \u2728",
+  //   slides: [
+  //     { emoji: "\ud83c\udf82", bg: "#fff5f0", label: "Cake" },
+  //     { emoji: "\ud83c\udf88", bg: "#f5f0ff", label: "Balloon" },
+  //     { emoji: "\ud83c\udf89", bg: "#fff0f5", label: "Confetti" },
+  //     { emoji: "\ud83c\udf81", bg: "#f0fff5", label: "Gift" },
+  //     { emoji: "\ud83d\udc51", bg: "#fffbe0", label: "Crown" },
+  //     { emoji: "\ud83c\udf1f", bg: "#f0f5ff", label: "Star" },
+  //   ],
+  // },
 ];
 
 export const PIN_STYLES: PinStyleOption[] = [

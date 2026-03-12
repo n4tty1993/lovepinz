@@ -1,90 +1,101 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import heroImg from "@/public/assets/home-page/hero.webp";
-import { TRUST_ITEMS } from "@/components/home/TrustStrip/TrustStrip.constants";
+import {
+  HERO_CARDS,
+  HERO_TRUST_ITEMS,
+  HERO_STATS,
+} from "@/components/home/HeroSection/HeroSection.constants";
 
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen bg-white flex items-center overflow-hidden"
-    >
-      {/* Parallax background gradient — extends beyond bounds so upward drift doesn't reveal gaps */}
-      <div className="absolute -top-20 -bottom-20 left-0 right-0 bg-[radial-gradient(ellipse_at_top_right,_#FFF0E8_0%,_transparent_60%)] pointer-events-none" />
+    <section className="relative bg-white overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20">
+        <div className="flex flex-col items-center gap-10">
+          {/* Product Cards */}
+          <div className="flex justify-center gap-4 md:gap-6 w-full max-w-md md:max-w-lg">
+            {HERO_CARDS.map((card, i) => (
+              <Link
+                key={card.title}
+                href="/funnel"
+                className={`group relative flex-1 rounded-2xl p-4 md:p-5 ${card.bgColor} text-white transition-transform hover:scale-[1.03] ${
+                  i === 0 ? "-rotate-3" : "rotate-3"
+                }`}
+              >
+                <p className="text-[10px] md:text-xs font-semibold tracking-widest uppercase opacity-70">
+                  {card.label}
+                </p>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
-        {/* Text stagger container */}
-        <div className="flex flex-col gap-8">
-          <div className="inline-flex items-center gap-2 w-fit px-4 py-1.5 rounded-full border border-[#2A7A6F]/30 bg-[#E8F5F3]">
-            <span className="w-2 h-2 rounded-full bg-[#2A7A6F] animate-pulse" />
-            <span className="text-xs font-semibold text-[#1F5C53] tracking-widest uppercase">
-              Custom Enamel Pins
-            </span>
+                <div className="flex justify-center my-4 md:my-5">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center">
+                    <span className="text-3xl md:text-4xl">{card.emoji}</span>
+                  </div>
+                </div>
+
+                <h3 className="text-base md:text-lg font-bold">{card.title}</h3>
+                <p className="text-xs md:text-sm opacity-70 mt-0.5">
+                  {card.subtitle}
+                </p>
+
+                <div className="mt-3">
+                  <span
+                    className={`inline-block text-[10px] md:text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-md ${card.badgeColor}`}
+                  >
+                    {card.badge}
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2C1A0E] leading-[1.05] tracking-tight">
-            Design Your Own{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-[#2A7A6F]">Magnetic</span>
-              <span className="absolute bottom-1 left-0 w-full h-[3px] bg-[#2A7A6F]/40 rounded" />
-            </span>{" "}
-            Pins
-          </h1>
+          {/* Heading */}
+          <div className="text-center max-w-xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2C1A0E] leading-[1.1] tracking-tight">
+              Create a custom enamel pin in{" "}
+              <span className="text-[#2A7A6F]">2 minutes</span>
+            </h1>
+            <p className="mt-4 text-base md:text-lg text-[#7A6458] leading-relaxed">
+              Turn anyone into the star of their own wearable keepsake
+            </p>
+          </div>
 
-          <p className="text-lg text-[#7A6458] max-w-lg leading-relaxed">
-            Custom enamel pins with strong magnetic backing.{" "}
-            <span className="text-[#2C1A0E] font-semibold">
-              No holes. No fabric damage.
-            </span>{" "}
-            Minimum 10 pieces.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3">
+          {/* CTA */}
+          <div className="w-full max-w-md">
             <Link
-              href="/product"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
+              href="/funnel"
+              className="flex items-center justify-center w-full px-8 py-4 rounded-full text-lg font-bold bg-[#2A7A6F] text-white hover:bg-[#1F5C53] transition-all hover:scale-[1.02] shadow-lg shadow-teal-100/60"
             >
-              Start Designing
-            </Link>
-            <Link
-              href="#pricing"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-base font-semibold border border-[#2A7A6F]/30 text-[#2C1A0E] bg-[#E8F5F3] hover:bg-[#D0EDE9] transition-colors"
-            >
-              Check our Pricing
+              Create Your Pin
             </Link>
           </div>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
-            {TRUST_ITEMS.map((item) => (
+          {/* Trust Items */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 w-full max-w-md">
+            {HERO_TRUST_ITEMS.map((item) => (
               <div key={item} className="flex items-center gap-1.5">
                 <span className="text-[#2A7A6F] font-bold text-sm">✓</span>
                 <span className="text-sm text-[#7A6458]">{item}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Product image — delayed entrance + scroll parallax (drifts up slower than text) */}
-        <Link href="/product" className="block">
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-[#2A7A6F]/20 shadow-xl shadow-teal-100/40">
-            <Image
-              src={heroImg}
-              alt="Custom magnetic enamel pins"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-              placeholder="blur"
-              preload
-            />
-            <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#2A7A6F]/30 rounded-tr-2xl" />
-            <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#2A7A6F]/30 rounded-bl-2xl" />
+          {/* Stats */}
+          <div className="flex items-center justify-center gap-0 w-full max-w-md pt-4">
+            {HERO_STATS.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`flex-1 text-center ${
+                  i > 0 ? "border-l border-[#2A7A6F]/20" : ""
+                }`}
+              >
+                <p className="text-2xl md:text-3xl font-bold text-[#2A7A6F]">
+                  {stat.value}
+                </p>
+                <p className="text-xs md:text-sm text-[#7A6458] mt-0.5">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
-        </Link>
+        </div>
       </div>
     </section>
   );

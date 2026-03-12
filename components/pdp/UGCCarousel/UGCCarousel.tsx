@@ -183,7 +183,7 @@ export function UGCCarousel() {
   }, [n]);
 
   return (
-    <section className="bg-white py-16 md:py-20">
+    <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-[600px]">
         {/* Title */}
         <motion.div
