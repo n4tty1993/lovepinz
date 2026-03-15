@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackAddToCart } from "@/lib/meta-pixel";
+import { clarityAddToCart } from "@/lib/clarity";
 import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
 
 export function StickyBar() {
@@ -37,6 +38,7 @@ export function StickyBar() {
               currency: "USD",
               quantity: state.quantity,
             });
+            clarityAddToCart();
             sendAddToCartWebhook({
               quantity: state.quantity,
               size: state.size,

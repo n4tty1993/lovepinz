@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { trackAddToCart } from "@/lib/meta-pixel";
+import { clarityAddToCart } from "@/lib/clarity";
 import { sendAddToCartWebhook } from "@/lib/webhook-add-to-cart";
 import { getTier } from "@/components/funnel/FunnelFlow/FunnelFlow.constants";
 import type { PinStyleOption } from "@/components/funnel/FunnelFlow/FunnelFlow.types";
@@ -57,6 +58,7 @@ export function OrderSummaryStep({
       currency: "USD",
       quantity: qty,
     });
+    clarityAddToCart();
 
     sendAddToCartWebhook({
       quantity: qty,

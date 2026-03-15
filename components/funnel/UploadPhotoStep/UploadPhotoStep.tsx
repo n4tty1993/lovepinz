@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { TIPS } from "@/components/funnel/FunnelFlow/FunnelFlow.constants";
 import { FunnelNav } from "@/components/funnel/FunnelNav/FunnelNav";
 import { trackUploadImage } from "@/lib/meta-pixel";
+import { clarityUploadImage } from "@/lib/clarity";
 
 interface UploadPhotoStepProps {
   occasionLabel: string;
@@ -33,6 +34,7 @@ export function UploadPhotoStep({
         const result = e.target?.result as string;
         onImageSet(result, file);
         trackUploadImage();
+        clarityUploadImage();
       };
       reader.readAsDataURL(file);
     },

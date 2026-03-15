@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useConfigurator } from "@/hooks/useConfigurator";
 import { formatPrice } from "@/core/pricing";
 import { trackPurchase } from "@/lib/meta-pixel";
+import { clarityPurchase } from "@/lib/clarity";
 import {
   SIZE_OPTIONS,
   FINISH_OPTIONS,
@@ -494,6 +495,7 @@ export function CheckoutForm() {
       currency: "USD",
       numItems: state.quantity,
     });
+    clarityPurchase();
     setShowModal(true);
   };
 

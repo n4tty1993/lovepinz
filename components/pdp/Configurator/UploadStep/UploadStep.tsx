@@ -20,6 +20,7 @@ import {
   COUPON_CODE,
 } from "../Configurator.constants";
 import { trackUploadImage } from "@/lib/meta-pixel";
+import { clarityUploadImage } from "@/lib/clarity";
 
 function WizardStepper({ current }: { current: string }) {
   const display = (UPLOAD_ALIAS_STEPS as readonly string[]).includes(current)
@@ -646,6 +647,7 @@ export function UploadStep() {
       setError(null);
       dispatch({ type: "SET_FILE", file, previewUrl: url });
       trackUploadImage();
+      clarityUploadImage();
     },
     [dispatch],
   );
