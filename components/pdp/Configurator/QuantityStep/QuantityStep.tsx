@@ -5,9 +5,9 @@ import { useConfigurator } from "@/hooks/useConfigurator";
 import { MIN_QUANTITY } from "@/core/pricing";
 
 const TIERS = [
-  { min: 10, max: 49, price: 6.99, label: "10–49" },
-  { min: 50, max: 99, price: 5.99, label: "50–99" },
-  { min: 100, max: 999, price: 4.99, label: "100+" },
+  { min: 10, max: 49, price: 9.99, label: "10–49" },
+  { min: 50, max: 99, price: 7.99, label: "50–99" },
+  { min: 100, max: 999, price: 5.99, label: "100+" },
 ];
 
 function getPricePerUnit(qty: number) {
@@ -144,7 +144,7 @@ export function QuantityStep() {
               You&apos;re getting the best price!
             </div>
             <div className="text-[11px] text-green-400">
-              Saving <strong>${((6.99 - 4.99) * qty).toFixed(2)}</strong> vs.
+              Saving <strong>${((9.99 - 5.99) * qty).toFixed(2)}</strong> vs.
               buying 10 pcs — great choice.
             </div>
           </div>

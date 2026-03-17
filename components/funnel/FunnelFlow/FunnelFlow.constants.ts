@@ -8,39 +8,6 @@ import type {
 
 export const OCCASIONS: OccasionOption[] = [
   {
-    id: "wedding",
-    label: "Wedding Guests",
-    title: "Custom Enamel Pin\nfor Wedding Guests",
-    desc: "Give every guest a keepsake they'll actually keep",
-    tag: "Most Popular \ud83c\udf89",
-    slides: [
-      {
-        emoji: "\ud83d\udc8d",
-        bg: "#fff0f5",
-        label: "Ring Design",
-        image: "/assets/wedding/1.webp",
-      },
-      {
-        emoji: "\ud83c\udf38",
-        bg: "#fff5f0",
-        label: "Floral",
-        image: "/assets/wedding/2.webp",
-      },
-      {
-        emoji: "\ud83d\udd4a\ufe0f",
-        bg: "#f0f5ff",
-        label: "Dove",
-        image: "/assets/wedding/3.webp",
-      },
-      {
-        emoji: "\ud83d\udcd2",
-        bg: "#f5f0ff",
-        label: "Chapel",
-        image: "/assets/wedding/4.webp",
-      },
-    ],
-  },
-  {
     id: "pet",
     label: "My Pet",
     title: "Custom Enamel Pin\nfor My Pet",
@@ -82,6 +49,39 @@ export const OCCASIONS: OccasionOption[] = [
         bg: "#e8f8ff",
         label: "Fish",
         image: "/assets/pet/6.webp",
+      },
+    ],
+  },
+  {
+    id: "wedding",
+    label: "Wedding Guests",
+    title: "Custom Enamel Pin\nfor Wedding Guests",
+    desc: "Give every guest a keepsake they'll actually keep",
+    tag: "Most Popular \ud83c\udf89",
+    slides: [
+      {
+        emoji: "\ud83d\udc8d",
+        bg: "#fff0f5",
+        label: "Ring Design",
+        image: "/assets/wedding/1.webp",
+      },
+      {
+        emoji: "\ud83c\udf38",
+        bg: "#fff5f0",
+        label: "Floral",
+        image: "/assets/wedding/2.webp",
+      },
+      {
+        emoji: "\ud83d\udd4a\ufe0f",
+        bg: "#f0f5ff",
+        label: "Dove",
+        image: "/assets/wedding/3.webp",
+      },
+      {
+        emoji: "\ud83d\udcd2",
+        bg: "#f5f0ff",
+        label: "Chapel",
+        image: "/assets/wedding/4.webp",
       },
     ],
   },
@@ -136,7 +136,7 @@ export const TIERS: TierOption[] = [
   {
     id: "t1",
     range: "10-49 pcs",
-    price: 6.99,
+    price: 9.99,
     min: 10,
     max: 49,
     label: "YOUR TIER",
@@ -145,7 +145,7 @@ export const TIERS: TierOption[] = [
   {
     id: "t2",
     range: "50-99 pcs",
-    price: 5.99,
+    price: 7.99,
     min: 50,
     max: 99,
     label: "POPULAR",
@@ -154,7 +154,7 @@ export const TIERS: TierOption[] = [
   {
     id: "t3",
     range: "100+ pcs",
-    price: 4.99,
+    price: 5.99,
     min: 100,
     max: Infinity,
     label: "BEST VALUE",
